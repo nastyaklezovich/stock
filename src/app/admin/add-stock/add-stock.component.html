@@ -1,0 +1,77 @@
+<div class="container">
+
+    <h4 class="text-center m-5">Добавление склада</h4>
+
+    <form [formGroup]="StockForm" type="form" class="form-group" novalidate>
+       
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label class="control-label" for="name">Название</label>
+                    <input formControlName="name" class="form-control name" type="text" #name>
+                </div>
+                <!-- <div *ngFor="let validation of account_validation_messages.name">
+                        <div class="alert alert-danger" *ngIf="StockForm.get('name').hasError(validation.type) &&
+                                   (StockForm.get('name').dirty ||
+                                   StockForm.get('name').touched)">
+                            {{validation.message}}
+                        </div>
+                    </div> -->
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="control-label" for="capacity">Вместимость</label>
+                    <input formControlName="capacity" class="form-control capacity" type="text" #capacity>
+                </div>
+                <!-- <div *ngFor="let validation of account_validation_messages.capacity">
+                        <div class="alert alert-danger" *ngIf="StockForm.get('capacity').hasError(validation.type) &&
+                                       (StockForm.get('capacity').dirty ||
+                                       StockForm.get('capacity').touched)">
+                            {{validation.message}}
+                        </div>
+                    </div> -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label class="control-label" for="type">Тип</label>
+                    <select class="form-control" name="type" id="type" [(ngModel)]="type"
+                        [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let type of types" [value]="type.name">
+                            {{type.name}}
+                        </option>
+                    </select>
+                </div>
+                <!-- <div *ngIf="StockForm.controls['type'].invalid && (StockForm.controls['type'].dirty || StockForm.controls['type'].touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="StockForm.controls['type'].errors.required">
+                                    Заполните данное поле!
+                                </div>
+                            </div> -->
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="control-label" for="address">Адрес</label>
+                    <input formControlName="address" class="form-control address" type="text" #address>
+                </div>
+                <!-- <div *ngFor="let validation of account_validation_messages.address">
+                    <div class="alert alert-danger" *ngIf="StockForm.get('address').hasError(validation.type) &&
+                                               (StockForm.get('address').dirty ||
+                                               StockForm.get('address').touched)">
+                        {{validation.message}}
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="form-group justify-content-center align-items-center text-center">
+            <button (click)="add_stock(name.value, capacity.value, type, address.value)" class="btn btn-primary">
+                Добавить
+            </button>
+        </div>
+
+    </form>
+
+</div>

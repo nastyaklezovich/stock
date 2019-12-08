@@ -1,0 +1,31 @@
+<div class="container">
+    <h1 class="text-center"></h1>
+    <a style="cursor: pointer; text-align: right;" (click)="exportexcel()">
+        Сохранить в excel
+        <img src="https://image.flaticon.com/icons/svg/282/282097.svg" alt="Dowload" style="width: 25px; height: 25px;">
+    </a>
+    <table class="table table-hover" id="excel-table">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Продукт</th>
+                <th class="text-center">Склад</th>
+                <th class="text-center">Недостаток (в шт)</th>
+                <th class="text-center">Недостаток (в ден.ед.)</th>
+                <th class="text-center">Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inventory of inventories; let i=index">
+                <td class="text-center">{{i+1}}</td>
+                <td class="text-center">{{ inventory.product}}</td>
+                <td class="text-center">{{ inventory.stock}}</td>
+                <td class="text-center">{{ inventory.deficit}}</td>
+                <td class="text-center">{{ inventory.deficit_price}}</td>
+                <td class="text-center"><a (click)="delete_inventory(inventory.id)" class="btn"><img
+                            src="https://image.flaticon.com/icons/svg/282/282080.svg" alt="delete"
+                            style="width: 30px; height: 30px;"></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,83 @@
+<div class="container">
+    <h1 class="text-center"></h1>
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Название</th>
+                <th class="text-center">Стоимость</th>
+                <th class="text-center">Изменить</th>
+                <th class="text-center">Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; let i=index">
+                <td class="text-center">{{i+1}}</td>
+                <td class="text-center">{{ product.name}}</td>
+                <td class="text-center">{{ product.price}}</td>
+                <td class="text-center"><a (click)="open_modal(template, product.id)" class="btn"><img
+                            src="https://image.flaticon.com/icons/svg/282/282091.svg" alt="edit"
+                            style="width: 30px; height: 30px;"></a></td>
+                <td class="text-center"><a (click)="delete_product(product.id)" class="btn"><img
+                            src="https://image.flaticon.com/icons/svg/282/282080.svg" alt="delete"
+                            style="width: 30px; height: 30px;"></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #template>
+
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5>Редактирование</h5>
+                <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="ProductForm" type="form" class="form-group" novalidate>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="control-label" for="name">Название</label>
+                                <input formControlName="name" class="form-control name" [(ngModel)]="res.name"
+                                    [value]="res.name" type="text" #name>
+                            </div>
+                            <!-- <div *ngFor="let validation of account_validation_messages.name">
+                                            <div class="alert alert-danger" *ngIf="ProductForm.get('name').hasError(validation.type) &&
+                                                       (ProductForm.get('name').dirty ||
+                                                       ProductForm.get('name').touched)">
+                                                {{validation.message}}
+                                            </div>
+                                        </div> -->
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="control-label" for="price">Цена (за ед.)</label>
+                                <input formControlName="price" class="form-control price" [(ngModel)]="res.price"
+                                    [value]="res.price" type="text" #price>
+                            </div>
+                            <!-- <div *ngFor="let validation of account_validation_messages.price">
+                                            <div class="alert alert-danger" *ngIf="ProductForm.get('price').hasError(validation.type) &&
+                                                           (ProductForm.get('price').dirty ||
+                                                           ProductForm.get('price').touched)">
+                                                {{validation.message}}
+                                            </div>
+                                        </div> -->
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
+                <button type="button" class="btn btn-primary" (click)="save(name.value, price.value)">Сохранить</button>
+            </div>
+        </div>
+
+    </ng-template>
+</div>

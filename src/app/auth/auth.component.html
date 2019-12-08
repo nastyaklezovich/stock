@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="https://image.flaticon.com/icons/svg/145/145867.svg" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form [formGroup]="authForm" class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input formControlName="login" #login type="email" id="inputEmail" class="form-control"
+                placeholder="Email address" required="" autofocus="">
+            <!-- <div *ngFor="let validation of account_validation_messages.login">
+                <div class="alert alert-danger" *ngIf="authForm.get('login').hasError(validation.type) &&
+                               (authForm.get('login').dirty ||
+                               authForm.get('login').touched)">
+                    {{validation.message}}
+                </div>
+            </div> -->
+            <input formControlName="password" type="password" id="inputPassword" class="form-control"
+                placeholder="Password" required="">
+            <!-- <div *ngFor="let validation of account_validation_messages.password">
+                <div class="alert alert-danger" *ngIf="authForm.get('password').hasError(validation.type) &&
+                                       (authForm.get('password').dirty ||
+                                       authForm.get('password').touched)">
+                    {{validation.message}}
+                </div>
+            </div> -->
+            <!-- <button routerLink="/" class="btn btn-danger" style="margin: 3px; width: 100px;">Отменить</button> -->
+            <button (click)="onSubmit()" class="btn btn-lg btn-primary btn-block btn-signin">Войти</button>
+            <!-- <button routerLink="/registration" class="btn btn-outline-primary"
+                style="margin: 3px; width: 203px;">Создать
+                аккаунт</button> -->
+        </form>
+    </div>
+</div>

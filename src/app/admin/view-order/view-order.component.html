@@ -1,0 +1,143 @@
+<div class="container">
+    <h1 class="text-center"></h1>
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Дата</th>
+                <th class="text-center">Покупатель</th>
+                <th class="text-center">Товар</th>
+                <th class="text-center">Количество</th>
+                <th class="text-center">Сумма</th>
+                <th class="text-center">Оплачено</th>
+                <th class="text-center">Статус</th>
+                <th class="text-center">Редактировать</th>
+                <th class="text-center">Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders; let i=index">
+                <td class="text-center">{{i+1}}</td>
+                <td class="text-center">{{ order.date}}</td>
+                <td class="text-center">{{ order.partner_id}}</td>
+                <td class="text-center">{{ order.product_id}}</td>
+                <td class="text-center">{{ order.quantity}}</td>
+                <td class="text-center">{{ order.sum}}</td>
+                <td class="text-center">{{ order.paid_sum}}</td>
+                <td class="text-center">{{ order.status}}</td>
+                <td class="text-center"><a (click)="open_modal(template, order.id)" class="btn"><img
+                            src="https://image.flaticon.com/icons/svg/282/282091.svg" alt="edit"
+                            style="width: 30px; height: 30px;"></a></td>
+                <td class="text-center"><a (click)="delete_order(order.id)" class="btn"><img
+                            src="https://image.flaticon.com/icons/svg/282/282080.svg" alt="delete"
+                            style="width: 30px; height: 30px;"></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #template>
+
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5>Редактирование</h5>
+                <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="OrderForm" role="form" class="form-group" novalidate>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="date">Дата</label>
+                            <input formControlName="date" class="form-control date" [(ngModel)]="res.date"
+                                [value]="res.date" type="date" #date>
+                        </div>
+                        <!-- <div *ngFor="let validation of acquantity_validation_messages.date">
+                                                    <div class="alert alert-danger" *ngIf="OrderForm.get('date').hasError(validation.type) &&
+                                                                                   (OrderForm.get('date').dirty ||
+                                                                                   OrderForm.get('date').touched)">
+                                                        {{validation.message}}
+                                                    </div>
+                                                </div> -->
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="partner_id">Заказчик</label>
+                            <input class="form-control partner_id" id="partner_id" [(ngModel)]="res.partner_id"
+                                [value]="res.partner_id" type="text">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="product_id">Продукт</label>
+                            <input class="form-control product_id" id="product_id" [(ngModel)]="res.product_id"
+                                [value]="res.product_id" type="text">
+                        </div>
+                        <!-- <div *ngIf="OrderForm.controls['product_id'].invalid && (OrderForm.controls['product_id'].dirty || OrderForm.controls['product_id'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="OrderForm.controls['product_id'].errors.required">
+                                Заполните данное поле!
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="quantity">Количество</label>
+                            <input formControlName="quantity" class="form-control quantity" [(ngModel)]="res.quantity"
+                                [value]="res.quantity" type="text" #quantity>
+                        </div>
+                        <!-- <div *ngFor="let validation of acquantity_validation_messages.quantity">
+                                            <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
+                                                                       (OrderForm.get('quantity').dirty ||
+                                                                       OrderForm.get('quantity').touched)">
+                                                {{validation.message}}
+                                            </div>
+                                        </div> -->
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="sum">Стоимость</label>
+                            <input formControlName="sum" class="form-control sum" [(ngModel)]="res.sum"
+                                [value]="res.sum" type="text" #sum>
+                        </div>
+                        <!-- <div *ngFor="let validation of acquantity_validation_messages.quantity">
+                                                <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
+                                                                           (OrderForm.get('quantity').dirty ||
+                                                                           OrderForm.get('quantity').touched)">
+                                                    {{validation.message}}
+                                                </div>
+                                            </div> -->
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="paid_sum">Оплаченная сумма</label>
+                            <input formControlName="paid_sum" class="form-control paid_sum" [(ngModel)]="res.paid_sum"
+                                [value]="res.paid_sum" type="text" #paid_sum>
+                        </div>
+                        <!-- <div *ngFor="let validation of acquantity_validation_messages.quantity">
+                                                    <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
+                                                                               (OrderForm.get('quantity').dirty ||
+                                                                               OrderForm.get('quantity').touched)">
+                                                        {{validation.message}}
+                                                    </div>
+                                                </div> -->
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
+                <button type="button" class="btn btn-primary"
+                    (click)="save(product_id.value, partner_id.value, quantity.value, date.value, sum.value, paid_sum.value)">Сохранить</button>
+            </div>
+        </div>
+
+    </ng-template>
+</div>

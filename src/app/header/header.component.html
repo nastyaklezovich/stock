@@ -1,0 +1,160 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href="#">
+        <img src="https://image.flaticon.com/icons/svg/407/407826.svg" width="30" height="30"
+            class="d-inline-block align-top" alt="">
+        Мой склад
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
+        aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample05">
+
+        <ng-container *ngIf="isAuthenthicated; then loggedIn; else loggedOut">
+        </ng-container>
+
+        <ng-template #loggedIn>
+
+            <ng-container *ngIf="isAdmin ; then Admin; else User"></ng-container>
+
+            <ng-template #Admin>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Поставки
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-supply">Добавить поставку</a>
+                            <a class="dropdown-item" href="admin/view-supply">Просмотреть поставки</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Пользователи
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-user">Добавить пользователя</a>
+                            <a class="dropdown-item" href="admin/view-user">Просмотреть пользователей</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Склады
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-stock">Добавить склад</a>
+                            <a class="dropdown-item" href="admin/view-stock">Просмотреть склады</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Продукты
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-product">Добавить продукт</a>
+                            <a class="dropdown-item" href="admin/view-product">Просмотреть продукты</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Инвентаризация
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-inventory">Провести инвентаризацию</a>
+                            <a class="dropdown-item" href="admin/view-inventory">Результаты инвентаризации</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Контрагенты
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-partner">Добавить контрагента</a>
+                            <a class="dropdown-item" href="admin/view-partner">Просмотреть контрагентов</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Заказы
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="admin/add-order">Добавить заказ</a>
+                            <a class="dropdown-item" href="admin/view-order">Просмотреть заказы</a>
+                        </div>
+                    </li>
+                </ul>
+            </ng-template>
+
+            <ng-template #User>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Поставки
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="user/add-supply">Добавить поставку</a>
+                            <a class="dropdown-item" href="user/view-supply">Просмотреть поставки</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Продукты
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="user/add-product">Добавить продукт</a>
+                            <a class="dropdown-item" href="user/view-product">Просмотреть продукты</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Инвентаризация
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="user/add-inventory">Провести инвентаризацию</a>
+                            <a class="dropdown-item" href="user/view-inventory">Результаты инвентаризации</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Заказы
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="user/add-order">Добавить заказ</a>
+                            <a class="dropdown-item" href="user/view-order">Просмотреть заказы</a>
+                        </div>
+                    </li>
+                </ul>
+            </ng-template>
+
+            <div class="mr-5 font-weight-light text-uppercase">
+                {{currentUser.loginEmail}}
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Выйти</button>
+        </ng-template>
+
+        <ng-template #loggedOut>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Главная</a>
+                </li>
+            </ul>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="auth">Войти</a>
+        </ng-template>
+
+    </div>
+
+</nav>
