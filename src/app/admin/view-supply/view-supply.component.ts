@@ -83,7 +83,7 @@ export class ViewSupplyComponent implements OnInit {
     });
   }
 
-  save(product_id, worker_id, stock_id, partner_id, quantity, date) {
+  save(product_id, worker_id, stock_id, partner_id, quantity, date, id) {
     const supply = {
       product_id: product_id,
       worker_id: worker_id,
@@ -95,7 +95,7 @@ export class ViewSupplyComponent implements OnInit {
     console.log(supply);
 
     this.route.params.subscribe(params => {
-      this.ss.update_supply(this.supply, params['id']);
+      this.ss.update_supply(this.supply, id);
       this.modalRef.hide();
     });
   }

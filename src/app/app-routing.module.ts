@@ -17,12 +17,18 @@ import { ViewPartnerComponent } from './admin/view-partner/view-partner.componen
 import { AddOrderComponent } from './admin/add-order/add-order.component';
 import { ViewOrderComponent } from './admin/view-order/view-order.component';
 import { UserComponent } from './user/user.component';
+import { ChartsComponent } from './admin/charts/charts.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   {
     path: "auth",
     component: AuthComponent
+  },
+  {
+    path: "home",
+    component: HomeComponent
   },
   {
     path: "admin",
@@ -83,6 +89,10 @@ const routes: Routes = [
       {
         path: "view-order",
         component: ViewOrderComponent
+      },
+      {
+        path: "charts",
+        component: ChartsComponent
       }
     ]
   },

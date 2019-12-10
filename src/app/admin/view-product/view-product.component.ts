@@ -43,7 +43,7 @@ export class ViewProductComponent implements OnInit {
     })
   }
 
-  save(name, price) {
+  save(name, price, id) {
 
     const product = {
       name: name,
@@ -51,7 +51,7 @@ export class ViewProductComponent implements OnInit {
     }
 
     this.route.params.subscribe(params => {
-      this.ps.update_product(product, params['id']);
+      this.ps.update_product(product, id);
       this.modalRef.hide();
     });
   }

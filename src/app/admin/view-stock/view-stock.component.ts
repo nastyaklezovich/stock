@@ -46,7 +46,7 @@ export class ViewStockComponent implements OnInit {
     })
   }
 
-  save(name, type, address, capacity) {
+  save(name, type, address, capacity, id) {
     const stock = {
       name: name,
       type: type,
@@ -56,7 +56,7 @@ export class ViewStockComponent implements OnInit {
     console.log(stock);
 
     this.route.params.subscribe(params => {
-      this.ss.update_stock(stock, params['id']);
+      this.ss.update_stock(stock, id);
       this.modalRef.hide();
     });
   }

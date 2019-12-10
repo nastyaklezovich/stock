@@ -1,11 +1,11 @@
 <div class="container">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="https://image.flaticon.com/icons/svg/145/145867.svg" />
-        <p id="profile-name" class="profile-name-card"></p>
+        <p id="profile-name" class="profile-name-card">Вход в "Мой склад"</p>
         <form [formGroup]="authForm" class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
             <input formControlName="login" #login type="email" id="inputEmail" class="form-control"
-                placeholder="Email address" required="" autofocus="">
+                placeholder="Email address" required="" autofocus="" autocomplete="username">
             <!-- <div *ngFor="let validation of account_validation_messages.login">
                 <div class="alert alert-danger" *ngIf="authForm.get('login').hasError(validation.type) &&
                                (authForm.get('login').dirty ||
@@ -14,7 +14,7 @@
                 </div>
             </div> -->
             <input formControlName="password" type="password" id="inputPassword" class="form-control"
-                placeholder="Password" required="">
+                placeholder="Password" required="" autocomplete="current-password">
             <!-- <div *ngFor="let validation of account_validation_messages.password">
                 <div class="alert alert-danger" *ngIf="authForm.get('password').hasError(validation.type) &&
                                        (authForm.get('password').dirty ||

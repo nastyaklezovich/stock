@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   public logout() {
     this.authService.logout();
-    this.router.navigate(["/"]);
+    this.router.navigate(["/home"]);
   }
 
   public get isAuthenthicated(): boolean {

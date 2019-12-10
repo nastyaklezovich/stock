@@ -67,6 +67,8 @@ export class AddSupplyComponent implements OnInit {
 
   }
 
+  
+
   add_supply(product_id, worker_id, stock_id, partner_id, quantity, date) {
     const obj = {
       product_id: product_id,

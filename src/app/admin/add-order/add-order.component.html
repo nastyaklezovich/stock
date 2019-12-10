@@ -22,8 +22,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="partner_id">Заказчик</label>
-                    <select class="form-control" name="partner_id" id="partner_id" [(ngModel)]="partner_id"
-                        [ngModelOptions]="{standalone: true}">
+                    <select class="form-control selectpicker" name="partner_id" id="partner_id" [(ngModel)]="partner_id"
+                        [ngModelOptions]="{standalone: true}" data-live-search="true">
                         <option *ngFor="let partner of partners" [value]="partner.id">
                             {{partner.name}}
                         </option>
@@ -37,8 +37,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="product_id">Продукт</label>
-                    <select class="form-control" name="product_id" id="product_id" [(ngModel)]="product_id"
-                        [ngModelOptions]="{standalone: true}">
+                    <select class="form-control selectpicker" name="product_id" id="product_id" [(ngModel)]="product_id"
+                        [ngModelOptions]="{standalone: true}" data-live-search="true">
                         <option *ngFor="let product of products" [value]="product.id">
                             {{product.name}}
                         </option>

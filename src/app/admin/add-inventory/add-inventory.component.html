@@ -4,28 +4,33 @@
     <ng-template #search>
         <form [formGroup]="SearchProductForm" product="form" class="form-group" novalidate>
 
-            <div class="form-group">
-                <label class="control-label" for="product">Продукт</label>
-                <select class="form-control" name="product" id="product" [(ngModel)]="product"
-                    [ngModelOptions]="{standalone: true}">
-                    <option *ngFor="let product of products" [value]="product.id">
-                        {{product.name}}
-                    </option>
-                </select>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="control-label" for="product_id">Продукт</label>
+                        <select class="form-control selectpicker" name="product_id" id="product_id"
+                            [(ngModel)]="product_id" [ngModelOptions]="{standalone: true}" data-live-search="true">
+                            <option *ngFor="let product of products" [value]="product.id">
+                                {{product.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="control-label" for="stock_id">Склад</label>
+                        <select class="form-control selectpicker" name="stock_id" id="stock_id" [(ngModel)]="stock_id"
+                            [ngModelOptions]="{standalone: true}" data-live-search="true">
+                            <option *ngFor="let stock of stocks" [value]="stock.id">
+                                {{stock.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label class="control-label" for="stock">Склад</label>
-                <select class="form-control" name="stock" id="stock" [(ngModel)]="stock"
-                    [ngModelOptions]="{standalone: true}">
-                    <option *ngFor="let stock of stocks" [value]="stock.id">
-                        {{stock.name}}
-                    </option>
-                </select>
-            </div>
-
+            
             <div class="form-group justify-content-center align-items-center text-center">
-                <button type="button" (click)="search_product(product, stock)" class="btn btn-primary">
+                <button type="button" (click)="search_product(product_id, stock_id)" class="btn btn-primary">
                     Найти
                 </button>
             </div>
@@ -40,15 +45,15 @@
         <form [formGroup]="InventoryForm" product="form" class="form-group" novalidate>
 
             <div class="form-group">
-                <label class="control-label" for="product">Продукт</label>
-                <input formControlName="product" class="form-control product" [(ngModel)]="res.product"
-                    [value]="res.product" type="text" #product>
+                <label class="control-label" for="product_id">Продукт</label>
+                <input formControlName="product_id" class="form-control product_id" [(ngModel)]="res.product_id"
+                    [value]="res.product_id" type="text" #product_id>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="stock">Склад</label>
-                <input formControlName="stock" class="form-control stock" [(ngModel)]="res.stock" [value]="res.stock"
-                    type="text" #stock>
+                <label class="control-label" for="stock_id">Склад</label>
+                <input formControlName="stock_id" class="form-control stock_id" [(ngModel)]="res.stock_id"
+                    [value]="res.stock_id" type="text" #stock_id>
             </div>
 
             <div class="form-group">

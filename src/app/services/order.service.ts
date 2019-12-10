@@ -14,6 +14,13 @@ export class OrderService {
             .subscribe(res => { alert('Заказ был добавлен!') })
     }
 
+    // get_data(obj){
+    //     this.http.post(`${this.uri}/order/chart`, obj)
+    //     .subscribe(res=>{
+    //         const data = "res";
+    //     });
+    // }
+
     delete_order(id) {
         return this
             .http

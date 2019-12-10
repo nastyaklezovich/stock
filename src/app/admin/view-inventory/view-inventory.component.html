@@ -18,8 +18,8 @@
         <tbody>
             <tr *ngFor="let inventory of inventories; let i=index">
                 <td class="text-center">{{i+1}}</td>
-                <td class="text-center">{{ inventory.product}}</td>
-                <td class="text-center">{{ inventory.stock}}</td>
+                <td class="text-center">{{ inventory.product_id}}</td>
+                <td class="text-center">{{ inventory.stock_id}}</td>
                 <td class="text-center">{{ inventory.deficit}}</td>
                 <td class="text-center">{{ inventory.deficit_price}}</td>
                 <td class="text-center"><a (click)="delete_inventory(inventory.id)" class="btn"><img

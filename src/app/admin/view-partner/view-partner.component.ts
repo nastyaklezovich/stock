@@ -46,7 +46,7 @@ export class ViewPartnerComponent implements OnInit {
     })
   }
 
-  save(name, role, address) {
+  save(name, role, address, id) {
 
     const partner = {
       name: name,
@@ -55,7 +55,7 @@ export class ViewPartnerComponent implements OnInit {
     }
 
     this.route.params.subscribe(params => {
-      this.ps.update_partner(partner, params['id']);
+      this.ps.update_partner(partner, id);
       this.modalRef.hide();
     });
   }

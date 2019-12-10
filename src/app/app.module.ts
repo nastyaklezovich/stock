@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS, /* other http imports */ } from "@
 import { Routes, RouterModule } from '@angular/router';
 import { AuthInterceptor } from './core/middleware';
 import { ModalModule } from "ngx-bootstrap/modal";
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { ViewPartnerComponent } from './admin/view-partner/view-partner.componen
 import { AddOrderComponent } from './admin/add-order/add-order.component';
 import { ViewOrderComponent } from './admin/view-order/view-order.component';
 import { UserComponent } from './user/user.component';
+import { ChartsComponent } from './admin/charts/charts.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { UserComponent } from './user/user.component';
     AddOrderComponent,
     ViewOrderComponent,
     UserComponent,
+    ChartsComponent,
+    HomeComponent,
   ],
   imports: [
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
@@ -58,7 +63,8 @@ import { UserComponent } from './user/user.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    ModalModule.forRoot(),    
+    ModalModule.forRoot(),
+    ChartsModule,
   ],
   providers: [
     {

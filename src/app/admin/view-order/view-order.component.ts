@@ -49,7 +49,7 @@ export class ViewOrderComponent implements OnInit {
     })
   }
 
-  save(date, product_id, partner_id, quantity, sum, paid_sum) {
+  save(date, product_id, partner_id, quantity, sum, paid_sum, id) {
     
     const order = {
       date: date,
@@ -61,7 +61,7 @@ export class ViewOrderComponent implements OnInit {
     }
 
     this.route.params.subscribe(params => {
-      this.os.update_order(order, params['id']);
+      this.os.update_order(order, id);
       this.modalRef.hide();
     });
   }

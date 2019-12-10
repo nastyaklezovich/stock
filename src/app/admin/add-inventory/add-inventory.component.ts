@@ -42,8 +42,8 @@ export class AddInventoryComponent implements OnInit {
     });
 
     this.InventoryForm = this.fb.group({
-      product: [{ value: '', disabled: true }, Validators.required],
-      stock: [{ value: '', disabled: true }, Validators.required],
+      product_id: [{ value: '', disabled: true }, Validators.required],
+      stock_id: [{ value: '', disabled: true }, Validators.required],
       date: ['', Validators.required],
       quantity: [{ value: '', disabled: true }, Validators.required],
       sum: [{ value: '', disabled: true }, Validators.required],
@@ -58,10 +58,10 @@ export class AddInventoryComponent implements OnInit {
 
   isSearch = true;
 
-  search_product(product, stock) {
+  search_product(product_id, stock_id) {
     const obj = {
-      product: product,
-      stock: stock,
+      product_id: product_id,
+      stock_id: stock_id,
     }
     console.log(obj);
     // this.is.search_product(obj);
@@ -73,10 +73,10 @@ export class AddInventoryComponent implements OnInit {
     }));
   }
 
-  add_inventory(product, stock, date, quantity, sum, real_sum, real_quantity, deficit, deficit_price) {
+  add_inventory(product_id, stock_id, date, quantity, sum, real_sum, real_quantity, deficit, deficit_price) {
     const inventory = {
-      product: product,
-      stock: stock,
+      product_id: product_id,
+      stock_id: stock_id,
       date: date,
       quantity: quantity,
       sum: sum,
@@ -88,6 +88,7 @@ export class AddInventoryComponent implements OnInit {
     console.log(inventory);
     this.is.add_inventory(inventory);
   }
+  
 
 
 }
