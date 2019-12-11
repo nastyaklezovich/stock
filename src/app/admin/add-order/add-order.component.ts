@@ -56,11 +56,11 @@ export class AddOrderComponent implements OnInit {
 
   }
 
-  add_order(date, product_id, partner_id, quantity, sum, paid_sum) {
+  add_order(date, partner_id, product_id,  quantity, sum, paid_sum) {
     const order = {
       date: date,
-      product_id: product_id,
       partner_id: partner_id,
+      product_id: product_id,
       quantity: quantity,
       sum: sum,
       paid_sum: paid_sum,
