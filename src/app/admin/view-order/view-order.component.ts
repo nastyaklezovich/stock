@@ -26,8 +26,8 @@ export class ViewOrderComponent implements OnInit {
   createForm() {
     this.OrderForm = this.fb.group({
       date: ['', Validators.required],
-      product_id: [''],
-      partner_id: [''],
+      product_id: [{ value: '', disabled: true }],
+      partner_id: [{ value: '', disabled: true }],
       quantity: ['', Validators.compose([
         Validators.maxLength(20),
         Validators.pattern('^[0-9]+$'),
