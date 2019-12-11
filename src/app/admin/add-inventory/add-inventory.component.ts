@@ -63,6 +63,7 @@ export class AddInventoryComponent implements OnInit {
       product_id: product_id,
       stock_id: stock_id,
     }
+    // console.log(this.SearchProductForm);
     console.log(obj);
     // this.is.search_product(obj);
     this.isSearch = false;

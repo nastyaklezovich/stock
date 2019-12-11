@@ -33,7 +33,7 @@ export class AddOrderComponent implements OnInit {
     })
 
     this.OrderForm = this.fb.group({
-      date: [''],
+      date: ['', Validators.required],
       product_id: [''],
       partner_id: [''],
       quantity: ['', Validators.compose([
@@ -70,17 +70,20 @@ export class AddOrderComponent implements OnInit {
   }
 
   account_validation_messages = {
-    'quantity':[
+    'quantity': [
       { type: 'required', message: 'Заполните поле' },
       { type: 'maxlength', message: 'Количество не может содержать больше 20 символов' },
       { type: 'pattern', message: 'Некорректное количество' },
     ],
-    'sum':[
+    'date': [
+      { type: 'required', message: 'Заполните поле' }
+    ],
+    'sum': [
       { type: 'required', message: 'Заполните поле' },
       { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
       { type: 'pattern', message: 'Некорректная стоимость' },
     ],
-    'paid_sum':[
+    'paid_sum': [
       { type: 'required', message: 'Заполните поле' },
       { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
       { type: 'pattern', message: 'Некорректная стоимость' },

@@ -23,7 +23,7 @@ export class ProductService {
     get_products() {
         return this
             .http
-            .get(`${this.uri}/stock`);
+            .get(`${this.uri}/product`);
     }
 
     edit_product(id) {
