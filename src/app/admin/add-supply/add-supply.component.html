@@ -97,13 +97,13 @@
                     <label class="control-label" for="date">Дата</label>
                     <input formControlName="date" class="form-control date" type="date" #date>
                 </div>
-                <!-- <div *ngFor="let validation of acquantity_validation_messages.date">
+                <div *ngFor="let validation of account_validation_messages.date">
                     <div class="alert alert-danger" *ngIf="SupplyForm.get('date').hasError(validation.type) &&
                                                    (SupplyForm.get('date').dirty ||
                                                    SupplyForm.get('date').touched)">
                         {{validation.message}}
                     </div>
-                </div> -->
+                </div>
             </div>
 
         </div>

@@ -10,6 +10,13 @@
                     <label class="control-label" for="date">Дата</label>
                     <input formControlName="date" class="form-control date" type="date" #date>
                 </div>
+                <div *ngFor="let validation of account_validation_messages.date">
+                    <div class="alert alert-danger" *ngIf="OrderForm.get('date').hasError(validation.type) &&
+                                               (OrderForm.get('date').dirty ||
+                                               OrderForm.get('date').touched)">
+                        {{validation.message}}
+                    </div>
+                </div>
             </div>
 
             <div class="col">

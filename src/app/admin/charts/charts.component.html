@@ -1,6 +1,6 @@
 <div class="container">
     <ng-container *ngIf="isOk; then Table; else Form"></ng-container>
-    <!-- <ng-template #Form>
+    <ng-template #Form>
 
         <form [formGroup]="ChartForm" type="form" class="form-group" novalidate>
             <div class="row">
@@ -10,6 +10,13 @@
                         <input formControlName="start_date" class="form-control start_date" type="date"
                             name="start_date" id="start_date" #start_date>
                     </div>
+                    <div *ngFor="let validation of account_validation_messages.start_date">
+                        <div class="alert alert-danger" *ngIf="ChartForm.get('start_date').hasError(validation.type) &&
+                                                       (ChartForm.get('start_date').dirty ||
+                                                       ChartForm.get('start_date').touched)">
+                            {{validation.message}}
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
@@ -17,22 +24,29 @@
                         <input formControlName="end_date" class="form-control end_date" type="date" name="end_date"
                             id="end_date" #end_date>
                     </div>
+                    <div *ngFor="let validation of account_validation_messages.end_date">
+                        <div class="alert alert-danger" *ngIf="ChartForm.get('end_date').hasError(validation.type) &&
+                                                       (ChartForm.get('end_date').dirty ||
+                                                       ChartForm.get('end_date').touched)">
+                            {{validation.message}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
         <div class="form-group justify-content-center align-items-center text-center">
-            <button (click)="get_data(start_date.value, end_date.value)" class="btn btn-primary">
+            <button [disabled]="ChartForm.status == 'INVALID'" (click)="get_data(start_date.value, end_date.value)" class="btn btn-primary">
                 Отчет
             </button>
         </div>
-    </ng-template> -->
+    </ng-template>
 
-    <div class="chart-wrapper">
+    <!-- <div class="chart-wrapper">
         <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
             [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
             [plugins]="lineChartPlugins">
         </canvas>
-    </div>
+    </div> -->
 
     <ng-template #Table>
 

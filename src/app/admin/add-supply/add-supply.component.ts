@@ -29,7 +29,7 @@ export class AddSupplyComponent implements OnInit {
 
   create_form() {
     this.SupplyForm = this.fb.group({
-      date: [''],
+      date: ['', Validators.required],
       quantity: ['', Validators.compose([
         Validators.maxLength(15),
         Validators.pattern('^[0-9]+$'),

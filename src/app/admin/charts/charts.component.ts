@@ -86,4 +86,13 @@ export class ChartsComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
   }
 
+  account_validation_messages = {
+    'end_date': [
+      { type: 'required', message: 'Заполните поле' },
+    ],
+    'start_date': [
+      { type: 'required', message: 'Заполните поле' }
+    ],
+  }
+
 }
