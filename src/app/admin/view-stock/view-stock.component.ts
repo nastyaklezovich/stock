@@ -18,6 +18,7 @@ export class ViewStockComponent implements OnInit {
   StockForm: FormGroup;
   res: {} = {};
   stock: {} = {};
+  types = [{ name: "закрытый" }, { name: "полузакрытый" }, { name: "открытый" }];
 
   constructor(private ss: StockService, private route: ActivatedRoute, private fb: FormBuilder, private modalService: BsModalService) {
     this.createForm();
