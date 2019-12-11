@@ -54,13 +54,13 @@
                             <input formControlName="date" class="form-control date" [(ngModel)]="res.date"
                                 [value]="res.date" type="date" #date>
                         </div>
-                        <!-- <div *ngFor="let validation of acquantity_validation_messages.date">
-                                                    <div class="alert alert-danger" *ngIf="OrderForm.get('date').hasError(validation.type) &&
-                                                                                   (OrderForm.get('date').dirty ||
-                                                                                   OrderForm.get('date').touched)">
-                                                        {{validation.message}}
-                                                    </div>
-                                                </div> -->
+                        <div *ngFor="let validation of account_validation_messages.date">
+                            <div class="alert alert-danger" *ngIf="OrderForm.get('date').hasError(validation.type) &&
+                                                       (OrderForm.get('date').dirty ||
+                                                       OrderForm.get('date').touched)">
+                                {{validation.message}}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col">
@@ -68,7 +68,7 @@
                             <label class="control-label" for="partner_id">Заказчик</label>
                             <input class="form-control partner_id" id="partner_id" [(ngModel)]="res.partner_id"
                                 [value]="res.partner_id" type="text">
-                                
+
                         </div>
                     </div>
 
@@ -92,13 +92,13 @@
                             <input formControlName="quantity" class="form-control quantity" [(ngModel)]="res.quantity"
                                 [value]="res.quantity" type="text" #quantity>
                         </div>
-                        <!-- <div *ngFor="let validation of acquantity_validation_messages.quantity">
-                                            <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
-                                                                       (OrderForm.get('quantity').dirty ||
-                                                                       OrderForm.get('quantity').touched)">
-                                                {{validation.message}}
-                                            </div>
-                                        </div> -->
+                        <div *ngFor="let validation of account_validation_messages.quantity">
+                            <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
+                                                       (OrderForm.get('quantity').dirty ||
+                                                       OrderForm.get('quantity').touched)">
+                                {{validation.message}}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col">
@@ -107,13 +107,13 @@
                             <input formControlName="sum" class="form-control sum" [(ngModel)]="res.sum"
                                 [value]="res.sum" type="text" #sum>
                         </div>
-                        <!-- <div *ngFor="let validation of acquantity_validation_messages.quantity">
-                                                <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
-                                                                           (OrderForm.get('quantity').dirty ||
-                                                                           OrderForm.get('quantity').touched)">
-                                                    {{validation.message}}
-                                                </div>
-                                            </div> -->
+                        <div *ngFor="let validation of account_validation_messages.sum">
+                            <div class="alert alert-danger" *ngIf="OrderForm.get('sum').hasError(validation.type) &&
+                                                                           (OrderForm.get('sum').dirty ||
+                                                                           OrderForm.get('sum').touched)">
+                                {{validation.message}}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col">
@@ -122,20 +122,20 @@
                             <input formControlName="paid_sum" class="form-control paid_sum" [(ngModel)]="res.paid_sum"
                                 [value]="res.paid_sum" type="text" #paid_sum>
                         </div>
-                        <!-- <div *ngFor="let validation of acquantity_validation_messages.quantity">
-                                                    <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
-                                                                               (OrderForm.get('quantity').dirty ||
-                                                                               OrderForm.get('quantity').touched)">
-                                                        {{validation.message}}
-                                                    </div>
-                                                </div> -->
+                        <div *ngFor="let validation of account_validation_messages.paid_sum">
+                            <div class="alert alert-danger" *ngIf="OrderForm.get('paid_sum').hasError(validation.type) &&
+                                                                               (OrderForm.get('paid_sum').dirty ||
+                                                                               OrderForm.get('paid_sum').touched)">
+                                {{validation.message}}
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
-                <button type="button" class="btn btn-primary"
+                <button [disabled]="OrderForm.status == 'INVALID'" type="button" class="btn btn-primary"
                     (click)="save(product_id.value, partner_id.value, quantity.value, date.value, sum.value, paid_sum.value, res.id)">Сохранить</button>
             </div>
         </div>

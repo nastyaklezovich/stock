@@ -53,12 +53,12 @@
                             </option>
                         </select>
                     </div>
-                    <div *ngIf="SupplyForm.controls['product_id'].invalid && (SupplyForm.controls['product_id'].dirty || SupplyForm.controls['product_id'].touched)"
+                    <!-- <div *ngIf="SupplyForm.controls['product_id'].invalid && (SupplyForm.controls['product_id'].dirty || SupplyForm.controls['product_id'].touched)"
                         class="alert alert-danger">
                         <div *ngIf="SupplyForm.controls['product_id'].errors.required">
                             Заполните данное поле!
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col">
@@ -71,12 +71,12 @@
                             </option>
                         </select>
                     </div>
-                    <div *ngIf="SupplyForm.controls['worker_id'].invalid && (SupplyForm.controls['worker_id'].dirty || SupplyForm.controls['worker_id'].touched)"
+                    <!-- <div *ngIf="SupplyForm.controls['worker_id'].invalid && (SupplyForm.controls['worker_id'].dirty || SupplyForm.controls['worker_id'].touched)"
                         class="alert alert-danger">
                         <div *ngIf="SupplyForm.controls['worker_id'].errors.required">
                             Заполните данное поле!
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col">
@@ -89,12 +89,12 @@
                             </option>
                         </select>
                     </div>
-                    <div *ngIf="SupplyForm.controls['stock_id'].invalid && (SupplyForm.controls['stock_id'].dirty || SupplyForm.controls['stock_id'].touched)"
+                    <!-- <div *ngIf="SupplyForm.controls['stock_id'].invalid && (SupplyForm.controls['stock_id'].dirty || SupplyForm.controls['stock_id'].touched)"
                         class="alert alert-danger">
                         <div *ngIf="SupplyForm.controls['stock_id'].errors.required">
                             Заполните данное поле!
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col">
@@ -121,10 +121,10 @@
                         <input formControlName="quantity" class="form-control quantity" [(ngModel)]="res.quantity"
                             [value]="res.quantity" type="text" #quantity>
                     </div>
-                    <div *ngFor="let validation of acquantity_validation_messages.quantity">
+                    <div *ngFor="let validation of account_validation_messages.quantity">
                         <div class="alert alert-danger" *ngIf="SupplyForm.get('quantity').hasError(validation.type) &&
-                                                               (SupplyForm.get('quantity').dirty ||
-                                                               SupplyForm.get('quantity').touched)">
+                                                   (SupplyForm.get('quantity').dirty ||
+                                                   SupplyForm.get('quantity').touched)">
                             {{validation.message}}
                         </div>
                     </div>
@@ -136,13 +136,13 @@
                         <input formControlName="date" class="form-control date" [(ngModel)]="res.date"
                             [value]="res.date" type="date" #date>
                     </div>
-                    <!-- <div *ngFor="let validation of acquantity_validation_messages.date">
-                                    <div class="alert alert-danger" *ngIf="SupplyForm.get('date').hasError(validation.type) &&
-                                                                   (SupplyForm.get('date').dirty ||
-                                                                   SupplyForm.get('date').touched)">
-                                        {{validation.message}}
-                                    </div>
-                                </div> -->
+                    <div *ngFor="let validation of account_validation_messages.date">
+                        <div class="alert alert-danger" *ngIf="SupplyForm.get('date').hasError(validation.type) &&
+                                                       (SupplyForm.get('date').dirty ||
+                                                       SupplyForm.get('date').touched)">
+                            {{validation.message}}
+                        </div>
+                    </div>
                 </div>
 
             </form>
@@ -151,7 +151,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
-            <button type="button" class="btn btn-primary"
+            <button  [disabled]="SupplyForm.status == 'INVALID'" type="button" class="btn btn-primary"
                 (click)="save(product_id, worker_id, stock_id, partner_id, quantity.value, date.value, res.id)">Сохранить</button>
         </div>
     </ng-template>

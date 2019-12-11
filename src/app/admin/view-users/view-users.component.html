@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="text-center"></h1>
-    
+
     <table class="table table-hover ">
         <thead class="thead-light">
             <tr class="">
@@ -49,8 +49,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="control-label" for="first_name">Имя</label>
-                            <input formControlName="first_name" class="form-control first_name" 
-                            [(ngModel)]="res.first_name" [value]="res.first_name" type="text" #first_name>
+                            <input formControlName="first_name" class="form-control first_name"
+                                [(ngModel)]="res.first_name" [value]="res.first_name" type="text" #first_name>
                         </div>
                         <div *ngFor="let validation of account_validation_messages.first_name">
                             <div class="alert alert-danger" *ngIf="UserForm.get('first_name').hasError(validation.type) &&
@@ -64,8 +64,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="control-label" for="last_name">Фамилия</label>
-                            <input formControlName="last_name" class="form-control last_name" 
-                            [(ngModel)]="res.last_name" [value]="res.last_name" type="text" #last_name>
+                            <input formControlName="last_name" class="form-control last_name"
+                                [(ngModel)]="res.last_name" [value]="res.last_name" type="text" #last_name>
                         </div>
                         <div *ngFor="let validation of account_validation_messages.last_name">
                             <div class="alert alert-danger" *ngIf="UserForm.get('last_name').hasError(validation.type) &&
@@ -86,19 +86,19 @@
                                 </option>
                             </select>
                         </div>
-                        <div *ngIf="UserForm.controls['role'].invalid && (UserForm.controls['role'].dirty || UserForm.controls['role'].touched)"
+                        <!-- <div *ngIf="UserForm.controls['role'].invalid && (UserForm.controls['role'].dirty || UserForm.controls['role'].touched)"
                             class="alert alert-danger">
                             <div *ngIf="UserForm.controls['role'].errors.required">
                                 Заполните данное поле!
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="col">
                         <div class="form-group">
                             <label class="control-label" for="phone_number">Телефон</label>
-                            <input formControlName="phone_number" class="form-control phone_number" 
-                            [(ngModel)]="res.phone_number" [value]="res.phone_number" type="text" #phone_number>
+                            <input formControlName="phone_number" class="form-control phone_number"
+                                [(ngModel)]="res.phone_number" [value]="res.phone_number" type="text" #phone_number>
                         </div>
                         <div *ngFor="let validation of account_validation_messages.phone_number">
                             <div class="alert alert-danger" *ngIf="UserForm.get('phone_number').hasError(validation.type) &&
@@ -112,8 +112,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="control-label" for="last_name">Email</label>
-                            <input formControlName="email" class="form-control email" 
-                            [(ngModel)]="res.email" [value]="res.email" type="email" #email>
+                            <input formControlName="email" class="form-control email" [(ngModel)]="res.email"
+                                [value]="res.email" type="email" #email>
                         </div>
                         <div *ngFor="let validation of account_validation_messages.email">
                             <div class="alert alert-danger" *ngIf="UserForm.get('email').hasError(validation.type) &&
@@ -127,8 +127,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="control-label" for="password">Пароль</label>
-                            <input formControlName="password" class="form-control password" 
-                            [(ngModel)]="res.password" [value]="res.password" type="password" #password>
+                            <input formControlName="password" class="form-control password" [(ngModel)]="res.password"
+                                [value]="res.password" type="password" #password>
                         </div>
                         <div *ngFor="let validation of account_validation_messages.password">
                             <div class="alert alert-danger" *ngIf="UserForm.get('password').hasError(validation.type) &&
@@ -142,8 +142,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="control-label" for="position">Должность</label>
-                            <input formControlName="position" class="form-control position" 
-                            [(ngModel)]="res.position" [value]="res.position" type="text" #position>
+                            <input formControlName="position" class="form-control position" [(ngModel)]="res.position"
+                                [value]="res.position" type="text" #position>
                         </div>
                         <div *ngFor="let validation of account_validation_messages.position">
                             <div class="alert alert-danger" *ngIf="UserForm.get('position').hasError(validation.type) &&
@@ -158,8 +158,10 @@
             </div>
 
             <div class="modal-footer">
-                <button style="cursor: pointer;" type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
-                <button style="cursor: pointer;" type="button" class="btn btn-primary"
+                <button style="cursor: pointer;" type="button" class="btn btn-secondary"
+                    (click)="modalRef.hide()">Отменить</button>
+                <button [disabled]="UserForm.status == 'INVALID'" style="cursor: pointer;" type="button"
+                    class="btn btn-primary"
                     (click)="save(first_name.value, last_name.value, email.value, password.value, role, phone_number.value, position.value, res.id)">Сохранить</button>
             </div>
         </div>

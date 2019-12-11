@@ -25,13 +25,27 @@ export class ViewOrderComponent implements OnInit {
 
   createForm() {
     this.OrderForm = this.fb.group({
-      date: [{ value: '', disabled: true }, Validators.required],
-      product_id: [{ value: '', disabled: true }, Validators.required],
-      partner_id: [{ value: '', disabled: true }, Validators.required],
-      quantity: [{ value: '', disabled: true }, , Validators.required],
-      sum: [{ value: '', disabled: true }, , Validators.required],
-      paid_sum: ['', Validators.required],
+      date: ['', Validators.required],
+      product_id: [''],
+      partner_id: [''],
+      quantity: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
+      sum: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
+      paid_sum: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
+      // status: ['', Validators.required],
     })
+
   }
 
   ngOnInit() {
@@ -50,7 +64,7 @@ export class ViewOrderComponent implements OnInit {
   }
 
   save(date, product_id, partner_id, quantity, sum, paid_sum, id) {
-    
+
     const order = {
       date: date,
       product_id: product_id,
@@ -74,6 +88,27 @@ export class ViewOrderComponent implements OnInit {
       this.res = res;
       console.log(res);
     }));
+  }
+
+  account_validation_messages = {
+    'quantity': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Количество не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректное количество' },
+    ],
+    'date': [
+      { type: 'required', message: 'Заполните поле' }
+    ],
+    'sum': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ],
+    'paid_sum': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ]
   }
 
 }

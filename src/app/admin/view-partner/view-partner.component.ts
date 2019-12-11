@@ -26,8 +26,12 @@ export class ViewPartnerComponent implements OnInit {
 
   createForm() {
     this.PartnerForm = this.fb.group({
-      name: ['', Validators.required],
-      role: ['', Validators.required],
+      name: ['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
+        Validators.required
+      ])],
+      role: [''],
       address: ['', Validators.required],
     })
   }
@@ -68,6 +72,17 @@ export class ViewPartnerComponent implements OnInit {
       this.res = res;
       console.log(res);
     }));
+  }
+
+  account_validation_messages = {
+    'name': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Название не может содержать больше 25 символов' },
+      { type: 'pattern', message: 'Некорректное название' },
+    ],
+    'address': [
+      { type: 'required', message: 'Заполните поле' },
+    ]
   }
 
 

@@ -26,10 +26,18 @@ export class ViewStockComponent implements OnInit {
 
   createForm() {
     this.StockForm = this.fb.group({
-      name: ['', Validators.required],
-      type: ['', Validators.required],
+      name: ['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
+        Validators.required
+      ])],
+      type: [''],
       address: ['', Validators.required],
-      capacity: ['', Validators.required],
+      capacity: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
     })
   }
 
@@ -72,5 +80,19 @@ export class ViewStockComponent implements OnInit {
     }));
   }
 
-
+  account_validation_messages = {
+    'name': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Название не может содержать больше 25 символов' },
+      { type: 'pattern', message: 'Некорректное название' },
+    ],
+    'address': [
+      { type: 'required', message: 'Заполните поле' }
+    ],
+    'capacity': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Вместимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная вместимость' },
+    ]
+  }
 }

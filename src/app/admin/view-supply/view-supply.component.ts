@@ -39,13 +39,14 @@ export class ViewSupplyComponent implements OnInit {
       date: ['', Validators.required],
       quantity: ['', Validators.compose([
         Validators.maxLength(15),
-        Validators.pattern(/^[0-9]/),
+        Validators.pattern('^[0-9]+$'),
         Validators.required
       ])],
-      worker_id: ['', Validators.required],
-      product_id: ['', Validators.required],
-      stock_id: ['', Validators.required],
-      partner_id: ['', Validators.required],
+      worker_id: [''],
+      product_id: [''],
+      stock_id: [''],
+      partner_id: [''],
+
     })
   }
 
@@ -108,6 +109,26 @@ export class ViewSupplyComponent implements OnInit {
       this.res = res;
       console.log(res);
     }));
+  }
+
+  account_validation_messages = {
+    'date': [
+      { type: 'required', message: 'Заполните поле' },
+    ],
+    'quantity': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'pattern', message: 'Некорректно введены данные' },
+      { type: 'maxlength', message: 'Название не может содержать больше 15 символов' },
+    ],
+    'worker_id': [
+      { type: 'required', message: 'Заполните поле' },
+    ],
+    'product_id': [
+      { type: 'required', message: 'Заполните поле' },
+    ],
+    'stock_id': [
+      { type: 'required', message: 'Заполните поле' },
+    ],
   }
 
 }

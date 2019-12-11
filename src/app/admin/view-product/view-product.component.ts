@@ -25,8 +25,16 @@ export class ViewProductComponent implements OnInit {
 
   createForm() {
     this.ProductForm = this.fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
+      name: ['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
+        Validators.required
+      ])],
+      price: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
     })
   }
   ngOnInit() {
@@ -64,6 +72,20 @@ export class ViewProductComponent implements OnInit {
       this.res = res;
       console.log(res);
     }));
+  }
+
+
+  account_validation_messages = {
+    'name': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Название не может содержать больше 25 символов' },
+      { type: 'pattern', message: 'Некорректное название' },
+    ],
+    'price': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ]
   }
 
 

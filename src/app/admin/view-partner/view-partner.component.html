@@ -47,13 +47,13 @@
                                 <input formControlName="name" class="form-control name" [(ngModel)]="res.name"
                                     [value]="res.name" type="text" #name>
                             </div>
-                            <!-- <div *ngFor="let validation of account_validation_messages.name">
-                                            <div class="alert alert-danger" *ngIf="PartnerForm.get('name').hasError(validation.type) &&
-                                                       (PartnerForm.get('name').dirty ||
-                                                       PartnerForm.get('name').touched)">
-                                                {{validation.message}}
-                                            </div>
-                                        </div> -->
+                            <div *ngFor="let validation of account_validation_messages.name">
+                                <div class="alert alert-danger" *ngIf="PartnerForm.get('name').hasError(validation.type) &&
+                                                               (PartnerForm.get('name').dirty ||
+                                                               PartnerForm.get('name').touched)">
+                                    {{validation.message}}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col">
@@ -74,13 +74,13 @@
                                 <input formControlName="address" class="form-control address" [(ngModel)]="res.address"
                                     [value]="res.address" type="text" #address>
                             </div>
-                            <!-- <div *ngFor="let validation of account_validation_messages.price">
-                                            <div class="alert alert-danger" *ngIf="PartnerForm.get('price').hasError(validation.type) &&
-                                                           (PartnerForm.get('price').dirty ||
-                                                           PartnerForm.get('price').touched)">
-                                                {{validation.message}}
-                                            </div>
-                                        </div> -->
+                            <div *ngFor="let validation of account_validation_messages.address">
+                                <div class="alert alert-danger" *ngIf="PartnerForm.get('address').hasError(validation.type) &&
+                                                   (PartnerForm.get('address').dirty ||
+                                                   PartnerForm.get('address').touched)">
+                                    {{validation.message}}
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -91,7 +91,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
-                <button type="button" class="btn btn-primary"
+                <button [disabled]="PartnerForm.status == 'INVALID'" type="button" class="btn btn-primary"
                     (click)="save(name.value, role, address.value, res.id)">Сохранить</button>
             </div>
         </div>
