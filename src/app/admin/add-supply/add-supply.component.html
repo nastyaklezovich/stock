@@ -83,7 +83,7 @@
                     <label class="control-label" for="quantity">Количество</label>
                     <input formControlName="quantity" class="form-control quantity" type="text" #quantity>
                 </div>
-                <div *ngFor="let validation of acquantity_validation_messages.quantity">
+                <div *ngFor="let validation of account_validation_messages.quantity">
                     <div class="alert alert-danger" *ngIf="SupplyForm.get('quantity').hasError(validation.type) &&
                                                (SupplyForm.get('quantity').dirty ||
                                                SupplyForm.get('quantity').touched)">

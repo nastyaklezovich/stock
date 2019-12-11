@@ -29,16 +29,16 @@ export class AddSupplyComponent implements OnInit {
 
   create_form() {
     this.SupplyForm = this.fb.group({
-      date: ['', Validators.required],
+      date: [''],
       quantity: ['', Validators.compose([
         Validators.maxLength(15),
-        Validators.pattern(/^[0-9]/),
+        Validators.pattern('^[0-9]+$'),
         Validators.required
       ])],
-      worker_id: ['', Validators.required],
-      product_id: ['', Validators.required],
-      stock_id: ['', Validators.required],
-      partner_id: ['', Validators.required],
+      worker_id: [''],
+      product_id: [''],
+      stock_id: [''],
+      partner_id: [''],
 
     })
   }
@@ -82,7 +82,7 @@ export class AddSupplyComponent implements OnInit {
     this.ss.add_supply(obj);
   }
 
-  acquantity_validation_messages = {
+  account_validation_messages = {
     'date': [
       { type: 'required', message: 'Заполните поле' },
     ],
