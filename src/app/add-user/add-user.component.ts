@@ -18,13 +18,11 @@ export class AddUserComponent implements OnInit {
     this.UserForm = this.fb.group({
       first_name: ['', Validators.compose([
         Validators.maxLength(25),
-        Validators.minLength(3),
         Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
         Validators.required
       ])],
       last_name: ['', Validators.compose([
         Validators.maxLength(25),
-        Validators.minLength(3),
         Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
         Validators.required
       ])],
@@ -33,12 +31,15 @@ export class AddUserComponent implements OnInit {
         Validators.required
       ])],
       password: ['', Validators.required],
-      role: ['', Validators.required],
+      role: [''],
       phone_number: ['', Validators.compose([
-        Validators.pattern('375[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}'),
+        Validators.pattern('[0-9]{5}-[0-9]{3}-[0-9]{2}-[0-9]{2}'),
         Validators.required
       ])],
-      position: ['', Validators.required],
+      position: ['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
+      ])],
     })
   }
 
@@ -54,6 +55,8 @@ export class AddUserComponent implements OnInit {
       position: position,
     };
 
+    console.log(this.UserForm)
+
     console.log(user);
 
     this.us.add_user(user);
@@ -62,30 +65,29 @@ export class AddUserComponent implements OnInit {
   account_validation_messages = {
     'first_name': [
       { type: 'required', message: 'Заполните поле' },
-      { type: 'minlength', message: 'Имя должно содержать не менее 3 символов' },
       { type: 'maxlength', message: 'Имя не может содержать больше 25 символов' },
       { type: 'pattern', message: 'Имя может содержать только символьные значения' },
     ],
     'last_name': [
       { type: 'required', message: 'Заполните поле' },
-      { type: 'minlength', message: 'Фамилия должно содержать не менее 3 символов' },
       { type: 'maxlength', message: 'Фамилия не может содержать больше 25 символов' },
       { type: 'pattern', message: 'Фамилия может содержать только символьные значения' },
     ],
     'email': [
       { type: 'required', message: 'Заполните поле' },
-      { type: 'pattern', message: 'Email должен соответствовать паттерну youremail@company.com' },
+      { type: 'pattern', message: 'Некорректный email' },
     ],
     'password': [
       { type: 'required', message: 'Заполните поле' },
     ],
     'position': [
       { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Должность не может содержать больше 25 символов' },
+      { type: 'pattern', message: 'Должность может содержать только символьные значения' },
     ],
     'phone_number': [
       { type: 'required', message: 'Заполните поле' },
-      { type: 'pattern', message: 'Номер должен соответствовать паттерну (375__-___-__-__)' },
-
+      { type: 'pattern', message: 'Номер должен соответствовать паттерну (*****-***-**-**)' },
     ],
   }
 

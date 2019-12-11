@@ -10,16 +10,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddStockComponent implements OnInit {
 
   StockForm: FormGroup;
-  types = [{ name: "закрытый" }, { name: "полузакрытый" }, {name: "открытый"}];
+  types = [{ name: "закрытый" }, { name: "полузакрытый" }, { name: "открытый" }];
 
   constructor(private fb: FormBuilder, private ss: StockService) { }
 
   ngOnInit() {
     this.StockForm = this.fb.group({
-      name: ['', Validators.required],
-      type: ['', Validators.required],
+      name: ['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
+        Validators.required
+      ])],
+      type: [''],
       address: ['', Validators.required],
-      capacity: ['', Validators.required],
+      capacity: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
     })
   }
 
@@ -32,6 +40,22 @@ export class AddStockComponent implements OnInit {
     };
     console.log(stock);
     this.ss.add_stock(stock);
+  }
+
+  account_validation_messages = {
+    'name': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Название не может содержать больше 25 символов' },
+      { type: 'pattern', message: 'Некорректное название' },
+    ],
+    'address': [
+      { type: 'required', message: 'Заполните поле' }
+    ],
+    'capacity': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Вместимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная вместимость' },
+    ]
   }
 
 }

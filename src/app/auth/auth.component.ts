@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit {
   private returnUrl: string;
   private error: any;
 
-  constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService ) {
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
 
   }
 
@@ -37,34 +37,22 @@ export class AuthComponent implements OnInit {
 
   onSubmit() {
     console.log(this.authForm.controls.login.value),
-    console.log(this.authForm.controls.password.value),
-    this.authService
-      .login(
-        this.authForm.controls.login.value,
-        this.authForm.controls.password.value,
-      )
-      .pipe(first())
-      .subscribe(
-        () => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          alert("Некорректный логин или пароль!")
-        }
-      );
-  }
-
-  account_validation_messages = {
-    'login': [
-      { type: 'required', message: 'Заполните поле' },
-      { type: 'pattern', message: 'Email должен соответствовать паттерну youremail@company.com' },
-    ],
-    'password': [
-      { type: 'required', message: 'Заполните поле' },
-      { type: 'minlength', message: 'Пароль должен содержать не менее 5 символов' },
-    ],
-
+      console.log(this.authForm.controls.password.value),
+      this.authService
+        .login(
+          this.authForm.controls.login.value,
+          this.authForm.controls.password.value,
+        )
+        .pipe(first())
+        .subscribe(
+          () => {
+            this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            this.error = error;
+            alert("Некорректный логин или пароль!")
+          }
+        );
   }
 
 }

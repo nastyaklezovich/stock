@@ -10,31 +10,32 @@
                     <label class="control-label" for="name">Название</label>
                     <input formControlName="name" class="form-control name" type="text" #name>
                 </div>
-                <!-- <div *ngFor="let validation of account_validation_messages.name">
-                        <div class="alert alert-danger" *ngIf="ProductForm.get('name').hasError(validation.type) &&
-                                   (ProductForm.get('name').dirty ||
-                                   ProductForm.get('name').touched)">
-                            {{validation.message}}
-                        </div>
-                    </div> -->
+                <div *ngFor="let validation of account_validation_messages.name">
+                    <div class="alert alert-danger" *ngIf="ProductForm.get('name').hasError(validation.type) &&
+                                                   (ProductForm.get('name').dirty ||
+                                                   ProductForm.get('name').touched)">
+                        {{validation.message}}
+                    </div>
+                </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="price">Цена (за ед.)</label>
                     <input formControlName="price" class="form-control price" type="text" #price>
                 </div>
-                <!-- <div *ngFor="let validation of account_validation_messages.price">
-                        <div class="alert alert-danger" *ngIf="ProductForm.get('price').hasError(validation.type) &&
-                                       (ProductForm.get('price').dirty ||
-                                       ProductForm.get('price').touched)">
-                            {{validation.message}}
-                        </div>
-                    </div> -->
+                <div *ngFor="let validation of account_validation_messages.price">
+                    <div class="alert alert-danger" *ngIf="ProductForm.get('price').hasError(validation.type) &&
+                                                       (ProductForm.get('price').dirty ||
+                                                       ProductForm.get('price').touched)">
+                        {{validation.message}}
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="form-group justify-content-center align-items-center text-center">
-            <button (click)="add_product(name.value, price.value)" class="btn btn-primary">
+            <button [disabled]="ProductForm.status == 'INVALID'" (click)="add_product(name.value, price.value)"
+                class="btn btn-primary">
                 Добавить
             </button>
         </div>

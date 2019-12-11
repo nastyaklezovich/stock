@@ -16,20 +16,35 @@ export class AddPartnerComponent implements OnInit {
 
   ngOnInit() {
     this.PartnerForm = this.fb.group({
-      name: ['', Validators.required],
-      role: ['', Validators.required],
+      name: ['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
+        Validators.required
+      ])],
+      role: [''],
       address: ['', Validators.required],
     })
   }
 
-  add_partner(name, role, address){
-    const partner ={
+  add_partner(name, role, address) {
+    const partner = {
       name: name,
       role: role,
       address: address,
     }
     console.log(partner);
     this.ps.add_partner(partner);
+  }
+
+  account_validation_messages = {
+    'name': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Название не может содержать больше 25 символов' },
+      { type: 'pattern', message: 'Некорректное название' },
+    ],
+    'address': [
+      { type: 'required', message: 'Заполните поле' },
+    ]
   }
 
 }

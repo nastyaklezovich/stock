@@ -31,15 +31,27 @@ export class AddOrderComponent implements OnInit {
       console.log('partners');
       console.log(this.partners);
     })
-    
+
     this.OrderForm = this.fb.group({
-      date: ['', Validators.required],
-      product_id: ['', Validators.required],
-      partner_id: ['', Validators.required],
-      quantity: ['', Validators.required],
-      sum: ['', Validators.required],
-      paid_sum: ['', Validators.required],
-      status: ['', Validators.required],
+      date: [''],
+      product_id: [''],
+      partner_id: [''],
+      quantity: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
+      sum: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
+      paid_sum: ['', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
+      // status: ['', Validators.required],
     })
 
   }
@@ -55,6 +67,24 @@ export class AddOrderComponent implements OnInit {
     }
     console.log(order);
     this.os.add_order(order);
+  }
+
+  account_validation_messages = {
+    'quantity':[
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Количество не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректное количество' },
+    ],
+    'sum':[
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ],
+    'paid_sum':[
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ]
   }
 
 }

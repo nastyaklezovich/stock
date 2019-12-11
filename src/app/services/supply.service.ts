@@ -14,6 +14,11 @@ export class SupplyService {
             .subscribe(res => { console.log('Done'); alert('Поставка была добавлена!') })
     }
 
+    get_data(obj) {
+        return this.http.post(`${this.uri}/supply/report`, obj)
+    }
+
+
     delete_supply(id) {
         return this
             .http
@@ -35,7 +40,7 @@ export class SupplyService {
         this
             .http
             .put(`${this.uri}/supply/${id}`, obj)
-            .subscribe( res => alert('Поставка обновлена'))
+            .subscribe(res => alert('Поставка обновлена'))
     }
 
 }

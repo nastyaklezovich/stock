@@ -87,7 +87,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="deficit">Разница количества</label>
+                <label class="control-label" for="deficit">Недостача (в ед.)</label>
                 <input formControlName="deficit" class="form-control deficit"
                     value="{{real_quantity.value - res.quantity}}" type="text" #deficit>
             </div>
@@ -99,7 +99,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="deficit_price">Разница стоимости</label>
+                <label class="control-label" for="deficit_price">Недостача (в ден.ед.)</label>
                 <input formControlName="deficit_price" class="form-control deficit_price"
                     value="{{real_sum.value - res.sum}}" type="text" #deficit_price>
             </div>

@@ -11,7 +11,7 @@ export class UserService {
 
     add_user(obj) {
         this.http.post(`${this.uri}/user`, obj)
-            .subscribe(res => { alert('Пользователь был добавлена!') })
+            .subscribe(res => { alert('Пользователь был добавлен!') })
     }
 
     delete_user(id) {
@@ -34,7 +34,7 @@ export class UserService {
         this
             .http
             .put(`${this.uri}/user/${id}`, obj)
-            .subscribe( res => alert('Пользователь обновлена'))
+            .subscribe( res => alert('Пользователь обновлен'))
     }
 
 
