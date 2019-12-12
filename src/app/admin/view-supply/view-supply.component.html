@@ -7,6 +7,7 @@
                 <th class="text-center">Товар</th>
                 <th class="text-center">Сотрудник</th>
                 <th class="text-center">Склад</th>
+                <th class="text-center">Поставщик</th>
                 <th class="text-center">Количество</th>
                 <th class="text-center">Дата</th>
                 <th class="text-center">Изменить</th>
@@ -19,13 +20,16 @@
                 <td class="text-center">{{ supply.product_id}}</td>
                 <td class="text-center">{{ supply.worker_id}}</td>
                 <td class="text-center">{{ supply.stock_id}}</td>
+                <td class="text_center">{{ supply.partner_id}}</td>
                 <td class="text-center">{{ supply.quantity}}</td>
                 <td class="text-center">{{ supply.date}}</td>
-                <td class="text-center"><a (click)="open_modal(template, supply.id)" class="btn"><span
-                            class="fa fa-edit fa-2x"></span></a>
+                <td class="text-center"><a (click)="open_modal(template, supply.id)" class="btn"><img
+                            src="https://image.flaticon.com/icons/svg/282/282091.svg" alt="edit"
+                            style="width: 30px; height: 30px;"></a>
                 </td>
                 <td class="text-center"><a (click)="delete_supply(supply.id)" class="btn"><img
-                            src="https://image.flaticon.com/icons/svg/282/282080.svg" alt="delete"></a>
+                            src="https://image.flaticon.com/icons/svg/282/282080.svg" alt="delete"
+                            style="width: 30px; height: 30px;"></a>
                 </td>
             </tr>
         </tbody>
@@ -46,8 +50,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label class="control-label" for="product_id">Продукт</label>
-                        <select class="form-control selectpicker" name="product_id" id="product_id" [(ngModel)]="product_id"
-                            [ngModelOptions]="{standalone: true}" data-live-search="true">
+                        <select class="form-control selectpicker" name="product_id" id="product_id"
+                            [(ngModel)]="product_id" [ngModelOptions]="{standalone: true}" data-live-search="true">
                             <option *ngFor="let product of products" [value]="product.id">
                                 {{product.name}}
                             </option>
@@ -64,8 +68,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label class="control-label" for="worker_id">Ответственный</label>
-                        <select class="form-control selectpicker" name="worker_id" id="worker_id" [(ngModel)]="worker_id"
-                            [ngModelOptions]="{standalone: true}" data-live-search="true">
+                        <select class="form-control selectpicker" name="worker_id" id="worker_id"
+                            [(ngModel)]="worker_id" [ngModelOptions]="{standalone: true}" data-live-search="true">
                             <option *ngFor="let worker of users" [value]="worker.id">
                                 {{worker.first_name}}
                             </option>
@@ -151,7 +155,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
-            <button  [disabled]="SupplyForm.status == 'INVALID'" type="button" class="btn btn-primary"
+            <button [disabled]="SupplyForm.status == 'INVALID'" type="button" class="btn btn-primary"
                 (click)="save(product_id, worker_id, stock_id, partner_id, quantity.value, date.value, res.id)">Сохранить</button>
         </div>
     </ng-template>
