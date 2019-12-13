@@ -8,36 +8,22 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="product_id">Продукт</label>
-                    <select formControlName="product_id" class=" form-control product_id selectpicker"
-                        id="product_id" [(ngModel)]="product_id" data-live-search="true">
+                    <select formControlName="product_id" class=" form-control product_id" [(ngModel)]="product_id">
                         <option *ngFor="let product of products" [value]="product.id">
                             {{product.name}}
                         </option>
                     </select>
                 </div>
-                <!-- <div *ngIf="SupplyForm.controls['product_id'].invalid && (SupplyForm.controls['product_id'].dirty || SupplyForm.controls['product_id'].touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="SupplyForm.controls['product_id'].errors.required">
-                        Заполните данное поле!
-                    </div>
-                </div> -->
             </div>
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="worker_id">Ответственный</label>
-                    <select class="form-control selectpicker" name="worker_id" id="worker_id" [(ngModel)]="worker_id"
-                        [ngModelOptions]="{standalone: true}" data-live-search="true">
+                    <select formControlName="worker_id" class="form-control worker_id" [(ngModel)]="worker_id">
                         <option *ngFor="let worker of users" [value]="worker.id">
                             {{worker.first_name}}
                         </option>
                     </select>
                 </div>
-                <!-- <div *ngIf="SupplyForm.controls['worker_id'].invalid && (SupplyForm.controls['worker_id'].dirty || SupplyForm.controls['worker_id'].touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="SupplyForm.controls['worker_id'].errors.required">
-                        Заполните данное поле!
-                    </div>
-                </div> -->
             </div>
         </div>
 
@@ -45,37 +31,23 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="stock_id">Склад</label>
-                    <select class="form-control selectpicker" name="stock_id" id="stock_id" [(ngModel)]="stock_id"
-                        [ngModelOptions]="{standalone: true}" data-live-search="true">
+                    <select formControlName="stock_id" class="form-control stock_id" [(ngModel)]="stock_id">
                         <option *ngFor="let stock of stocks" [value]="stock.id">
                             {{stock.name}}
                         </option>
                     </select>
                 </div>
-                <!-- <div *ngIf="SupplyForm.controls['stock_id'].invalid && (SupplyForm.controls['stock_id'].dirty || SupplyForm.controls['stock_id'].touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="SupplyForm.controls['stock_id'].errors.required">
-                        Заполните данное поле!
-                    </div>
-                </div> -->
             </div>
 
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="partner_id">Поставщик</label>
-                    <select class="form-control selectpicker" name="partner_id" id="partner_id" [(ngModel)]="partner_id"
-                        [ngModelOptions]="{standalone: true}" data-live-search="true">
+                    <select formControlName="partner_id" class="form-control partner_id" [(ngModel)]="partner_id">
                         <option *ngFor="let partner of partners" [value]="partner.id">
                             {{partner.name}}
                         </option>
                     </select>
                 </div>
-                <!-- <div *ngIf="SupplyForm.controls['partner_id'].invalid && (SupplyForm.controls['stock_id'].dirty || SupplyForm.controls['stock_id'].touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="SupplyForm.controls['stock_id'].errors.required">
-                        Заполните данное поле!
-                    </div>
-                </div> -->
             </div>
 
             <div class="col">
