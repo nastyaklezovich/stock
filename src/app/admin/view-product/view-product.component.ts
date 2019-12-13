@@ -46,6 +46,7 @@ export class ViewProductComponent implements OnInit {
 
   delete_product(id) {
     this.ps.delete_product(id).subscribe(res => {
+      alert('Продукт удален!')
       console.log(id);
       console.log('Product deleted')
     })
@@ -73,7 +74,6 @@ export class ViewProductComponent implements OnInit {
       console.log(res);
     }));
   }
-
 
   account_validation_messages = {
     'name': [

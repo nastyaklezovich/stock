@@ -50,6 +50,7 @@ export class ViewStockComponent implements OnInit {
 
   delete_stock(id) {
     this.ss.delete_stock(id).subscribe(res => {
+      alert('Склад удален!');
       console.log(id);
       console.log('Stock deleted');
     })
