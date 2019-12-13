@@ -61,6 +61,7 @@ export class ViewUsersComponent implements OnInit {
 
   delete_user(id) {
     this.us.delete_user(id).subscribe(res => {
+      alert('Пользователь удален!')
       console.log(id);
       console.log('User deleted');
     })
