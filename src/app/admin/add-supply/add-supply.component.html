@@ -8,8 +8,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="product_id">Продукт</label>
-                    <select formControlName="product_id" class=" form-control product_id" [(ngModel)]="product_id">
-                        <option *ngFor="let product of products" [value]="product.id">
+                    <select formControlName="product_id" class="form-control product_id selectpicker" [(ngModel)]="product_id">
+                        <option *ngFor="let product of products" [value]="product.id" data-live-search="true">
                             {{product.name}}
                         </option>
                     </select>
@@ -18,8 +18,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="worker_id">Ответственный</label>
-                    <select formControlName="worker_id" class="form-control worker_id" [(ngModel)]="worker_id">
-                        <option *ngFor="let worker of users" [value]="worker.id">
+                    <select formControlName="worker_id" class="form-control worker_id selectpicker" [(ngModel)]="worker_id">
+                        <option *ngFor="let worker of users" [value]="worker.id" data-live-search="true">
                             {{worker.first_name}}
                         </option>
                     </select>
@@ -31,8 +31,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="stock_id">Склад</label>
-                    <select formControlName="stock_id" class="form-control stock_id" [(ngModel)]="stock_id">
-                        <option *ngFor="let stock of stocks" [value]="stock.id">
+                    <select formControlName="stock_id" class="form-control stock_id selectpicker" [(ngModel)]="stock_id">
+                        <option *ngFor="let stock of stocks" [value]="stock.id" data-live-search="true">
                             {{stock.name}}
                         </option>
                     </select>
@@ -42,8 +42,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="partner_id">Поставщик</label>
-                    <select formControlName="partner_id" class="form-control partner_id" [(ngModel)]="partner_id">
-                        <option *ngFor="let partner of partners" [value]="partner.id">
+                    <select formControlName="partner_id" class="form-control partner_id selectpicker" [(ngModel)]="partner_id">
+                        <option *ngFor="let partner of partners" [value]="partner.id" data-live-search="true">
                             {{partner.name}}
                         </option>
                     </select>
