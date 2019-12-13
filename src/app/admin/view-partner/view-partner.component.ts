@@ -45,6 +45,7 @@ export class ViewPartnerComponent implements OnInit {
 
   delete_partner(id) {
     this.ps.delete_partner(id).subscribe(res => {
+      alert('Партнер удален!')
       console.log(id);
       console.log('Partner deleted')
     })
