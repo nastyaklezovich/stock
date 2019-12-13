@@ -8,8 +8,8 @@
             <div class="col">
                 <div class="form-group">
                     <label class="control-label" for="product_id">Продукт</label>
-                    <select class="form-control selectpicker" name="product_id" id="product_id" [(ngModel)]="product_id"
-                        [ngModelOptions]="{standalone: true}" data-live-search="true">
+                    <select formControlName="product_id" class=" form-control product_id selectpicker"
+                        id="product_id" [(ngModel)]="product_id" data-live-search="true">
                         <option *ngFor="let product of products" [value]="product.id">
                             {{product.name}}
                         </option>
