@@ -43,9 +43,9 @@ export class ViewSupplyComponent implements OnInit {
         Validators.required
       ])],
       worker_id: [''],
-      product_id: [''],
+      product_id: [{value:'', disabled: true}],
       stock_id: [''],
-      partner_id: [''],
+      partner_id: [{value:'', disabled: true}],
 
     })
   }
@@ -79,6 +79,7 @@ export class ViewSupplyComponent implements OnInit {
 
   delete_supply(id) {
     this.ss.delete_supply(id).subscribe(res => {
+      alert('Поставка удалена!')
       console.log(id);
       console.log('Deleted');
     });

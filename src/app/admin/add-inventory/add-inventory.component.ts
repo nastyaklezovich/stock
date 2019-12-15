@@ -29,8 +29,8 @@ export class AddInventoryComponent implements OnInit {
 
   ngOnInit() {
     this.SearchProductForm = this.fb.group({
-      product: ['', Validators.required],
-      stock: ['', Validators.required],
+      product_id: ['', Validators.required],
+      stock_id: ['', Validators.required],
     })
 
     this.ps.get_products().subscribe((data: Product[]) => {
@@ -86,8 +86,8 @@ export class AddInventoryComponent implements OnInit {
       deficit: deficit,
       deficit_price: deficit_price
     }
+    alert()
     console.log(inventory);
-    this.is.add_inventory(inventory);
   }
   
 
