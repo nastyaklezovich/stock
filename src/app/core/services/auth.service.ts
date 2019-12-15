@@ -27,7 +27,7 @@ export class AuthService extends BaseService {
 
   public login(login: string, password: string) {
     const header = new HttpHeaders({Authorization:'Basic '+btoa(login+":"+password)});
-    return this.http.get<User>(`${this.baseUrl}/login`, { headers: header }).pipe(
+    return this.http.get<User>(`${this.baseUrl}/user/login`, { headers: header }).pipe(
       map(user => {
         console.log(user);
         if (user) {

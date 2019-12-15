@@ -1,101 +1,103 @@
 <div class="container h-100">
 
-    <h4 class="text-center m-5">Добавление заказа</h4>
+  <h4 class="text-center m-5">Добавление заказа</h4>
 
-    <form [formGroup]="OrderForm" role="form" class="form-group" novalidate>
+  <form [formGroup]="OrderForm" role="form" class="form-group" novalidate>
 
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label" for="date">Дата</label>
-                    <input formControlName="date" class="form-control date" type="date" #date>
-                </div>
-                <div *ngFor="let validation of account_validation_messages.date">
-                    <div class="alert alert-danger" *ngIf="OrderForm.get('date').hasError(validation.type) &&
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label class="control-label" for="date">Дата</label>
+          <input formControlName="date" class="form-control date" type="date" #date id="date">
+        </div>
+        <div *ngFor="let validation of account_validation_messages.date">
+          <div class="alert alert-danger" *ngIf="OrderForm.get('date').hasError(validation.type) &&
                                                (OrderForm.get('date').dirty ||
                                                OrderForm.get('date').touched)">
-                        {{validation.message}}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label" for="partner_id">Заказчик</label>
-                    <select class="form-control selectpicker" name="partner_id" id="partner_id" [(ngModel)]="partner_id"
-                        [ngModelOptions]="{standalone: true}" data-live-search="true">
-                        <option *ngFor="let partner of partners" [value]="partner.id">
-                            {{partner.name}}
-                        </option>
-                    </select>
-                </div>
-            </div>
+            {{validation.message}}
+          </div>
         </div>
+      </div>
 
-        <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label class="control-label" for="partner_id">Заказчик</label>
+          <select formControlName="partner_id" class="form-control partner_id" id="partner_id"
+                  [(ngModel)]="partner_id">
+            <option *ngFor="let partner of partners" [value]="partner.id">
+              {{partner.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label" for="product_id">Продукт</label>
-                    <select class="form-control selectpicker" name="product_id" id="product_id" [(ngModel)]="product_id"
-                        [ngModelOptions]="{standalone: true}" data-live-search="true">
-                        <option *ngFor="let product of products" [value]="product.id">
-                            {{product.name}}
-                        </option>
-                    </select>
-                </div>
-            </div>
+    <div class="row">
 
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label" for="quantity">Количество</label>
-                    <input formControlName="quantity" class="form-control quantity" type="text" #quantity>
-                </div>
-                <div *ngFor="let validation of account_validation_messages.quantity">
-                    <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
+      <div class="col">
+        <div class="form-group">
+          <label class="control-label" for="product_id">Продукт</label>
+          <select formControlName="product_id" class="form-control product_id" id="product_id"
+                  [(ngModel)]="product_id">
+            <option *ngFor="let product of products" [value]="product.id">
+              {{product.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label class="control-label" for="quantity">Количество</label>
+          <input formControlName="quantity" class="form-control quantity" type="text" #quantity id="quantity">
+        </div>
+        <div *ngFor="let validation of account_validation_messages.quantity">
+          <div class="alert alert-danger" *ngIf="OrderForm.get('quantity').hasError(validation.type) &&
                                                (OrderForm.get('quantity').dirty ||
                                                OrderForm.get('quantity').touched)">
-                        {{validation.message}}
-                    </div>
-                </div>
-            </div>
+            {{validation.message}}
+          </div>
+        </div>
+      </div>
 
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label" for="sum">Стоимость</label>
-                    <input formControlName="sum" class="form-control sum" type="text" #sum>
-                </div>
-                <div *ngFor="let validation of account_validation_messages.sum">
-                    <div class="alert alert-danger" *ngIf="OrderForm.get('sum').hasError(validation.type) &&
+      <div class="col">
+        <div class="form-group">
+          <label class="control-label" for="sum">Стоимость</label>
+          <input formControlName="sum" class="form-control sum" type="text" #sum id="sum">
+        </div>
+        <div *ngFor="let validation of account_validation_messages.sum">
+          <div class="alert alert-danger" *ngIf="OrderForm.get('sum').hasError(validation.type) &&
                                                                    (OrderForm.get('sum').dirty ||
                                                                    OrderForm.get('sum').touched)">
-                        {{validation.message}}
-                    </div>
-                </div>
-            </div>
+            {{validation.message}}
+          </div>
+        </div>
+      </div>
 
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label" for="paid_sum">Оплаченная сумма</label>
-                    <input formControlName="paid_sum" class="form-control paid_sum" type="text" #paid_sum>
-                </div>
-                <div *ngFor="let validation of account_validation_messages.paid_sum">
-                    <div class="alert alert-danger" *ngIf="OrderForm.get('paid_sum').hasError(validation.type) &&
+      <div class="col">
+        <div class="form-group">
+          <label class="control-label" for="paid_sum">Оплаченная сумма</label>
+          <input formControlName="paid_sum" class="form-control paid_sum" type="text" #paid_sum id="paid_sum">
+        </div>
+        <div *ngFor="let validation of account_validation_messages.paid_sum">
+          <div class="alert alert-danger" *ngIf="OrderForm.get('paid_sum').hasError(validation.type) &&
                                                                        (OrderForm.get('paid_sum').dirty ||
                                                                        OrderForm.get('paid_sum').touched)">
-                        {{validation.message}}
-                    </div>
-                </div>
-            </div>
-
+            {{validation.message}}
+          </div>
         </div>
+      </div>
 
-        <div class="form-group justify-content-center align-items-center text-center">
-            <button 
-            [disabled]="OrderForm.status == 'INVALID'" class="btn btn-outline-warning"
-                (click)="add_order(date.value, partner_id, product_id, quantity.value, sum.value, paid_sum.value)">Добавить</button>
-        </div>
+    </div>
 
-    </form>
+    <div class="form-group justify-content-center align-items-center text-center">
+      <button
+          [disabled]="OrderForm.status == 'INVALID'" class="btn btn-outline-warning"
+          (click)="add_order(date.value, partner_id, product_id, quantity.value, sum.value, paid_sum.value)">
+        Добавить
+      </button>
+    </div>
+
+  </form>
 
 </div>

@@ -1,118 +1,150 @@
 <div class="container">
-    <ng-container *ngIf="isSearch; then search; else result"></ng-container>
+  <ng-container *ngIf="isSearch; then search; else result"></ng-container>
 
-    <ng-template #search>
-        <form [formGroup]="SearchProductForm" product="form" class="form-group" novalidate>
+  <ng-template #search>
+    <form [formGroup]="SearchProductForm" product="form" class="form-group" novalidate>
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label class="control-label" for="product_id">Продукт</label>
-                        <select class="form-control selectpicker" name="product_id" id="product_id"
-                            [(ngModel)]="product_id" [ngModelOptions]="{standalone: true}" data-live-search="true">
-                            <option *ngFor="let product of products" [value]="product.id">
-                                {{product.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label class="control-label" for="stock_id">Склад</label>
-                        <select class="form-control selectpicker" name="stock_id" id="stock_id" [(ngModel)]="stock_id"
-                            [ngModelOptions]="{standalone: true}" data-live-search="true">
-                            <option *ngFor="let stock of stocks" [value]="stock.id">
-                                {{stock.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-group justify-content-center align-items-center text-center">
-                <button type="button" (click)="search_product(product_id, stock_id)" class="btn btn-primary">
-                    Найти
-                </button>
-            </div>
-        </form>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="product_id">Продукт</label>
+            <select formControlName="product_id" class="form-control product_id" id="product_id"
+                    [(ngModel)]="product_id">
+              <option *ngFor="let product of products" [value]="product.id">
+                {{product.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="stock_id">Склад</label>
+            <select formControlName="stock_id" class="form-control stock_id" id="stock_id"
+                    [(ngModel)]="stock_id">
+              <option *ngFor="let stock of stocks" [value]="stock.id">
+                {{stock.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-    </ng-template>
+      <div class="form-group justify-content-center align-items-center text-center">
+        <button type="button" (click)="search_product(product_id, stock_id)"
+                class="btn btn-primary">
+          Найти
+        </button>
+      </div>
+    </form>
 
-    <ng-template #result>
+  </ng-template>
 
-        <h4 class="text-center m-5">Результаты поиска</h4>
+  <ng-template #result>
 
-        <form [formGroup]="InventoryForm" product="form" class="form-group" novalidate>
+    <h4 class="text-center m-5">Результаты поиска</h4>
 
-            <div class="form-group">
-                <label class="control-label" for="product_id">Продукт</label>
-                <input formControlName="product_id" class="form-control product_id" [(ngModel)]="res.product_id"
-                    [value]="res.product_id" type="text" #product_id>
-            </div>
+    <form [formGroup]="InventoryForm" product="form" class="form-group" novalidate>
 
-            <div class="form-group">
-                <label class="control-label" for="stock_id">Склад</label>
-                <input formControlName="stock_id" class="form-control stock_id" [(ngModel)]="res.stock_id"
-                    [value]="res.stock_id" type="text" #stock_id>
-            </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="date">Дата</label>
+            <input formControlName="date" class="form-control date" id="date" type="date" #date>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="product_id">Продукт</label>
+            <input formControlName="product_id" class="form-control product_id"
+                   [(ngModel)]="res.product_id"
+                   [value]="res.product_id" type="text" #product_id>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="stock_id">Склад</label>
+            <input formControlName="stock_id" class="form-control stock_id"
+                   [(ngModel)]="res.stock_id"
+                   [value]="res.stock_id" type="text" #stock_id>
+          </div>
+        </div>
+        <div class="col">
 
-            <div class="form-group">
-                <label class="control-label" for="date">Дата</label>
-                <input formControlName="date" class="form-control date" type="date" #date>
-            </div>
+          <div class="form-group">
+            <label class="control-label" for="price">Цена (за ед.)</label>
+            <input formControlName="price" class="form-control price" [(ngModel)]="res.price"
+                   [value]="res.price"
+                   type="text" id="price" #price>
+          </div>
+        </div>
 
-            <div class="form-group">
-                <label class="control-label" for="price">Цена (за ед.)</label>
-                <input formControlName="price" class="form-control price" [(ngModel)]="res.price" [value]="res.price"
-                    type="text" #price>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="quantity">Количество</label>
-                <input formControlName="quantity" class="form-control quantity" [(ngModel)]="res.quantity"
-                    [value]="res.quantity" type="text" #quantity>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="sum">Стоимость</label>
-                <input formControlName="sum" class="form-control sum" [(ngModel)]="res.sum" [value]="res.sum"
-                    type="text" #sum>
-            </div>
-
-
-            <div class="form-group">
-                <label class="control-label" for="real_quantity">Реальное количество</label>
-                <input formControlName="real_quantity" class="form-control real_quantity" ng-model="myNumber"
-                    type="text" #real_quantity>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="deficit">Недостача (в ед.)</label>
-                <input formControlName="deficit" class="form-control deficit"
-                    value="{{real_quantity.value - res.quantity}}" type="text" #deficit>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="real_sum">Реальная стоимость</label>
-                <input formControlName="real_sum" class="form-control real_sum"
-                    value="{{res.price * real_quantity.value}}" type="text" #real_sum>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="deficit_price">Недостача (в ден.ед.)</label>
-                <input formControlName="deficit_price" class="form-control deficit_price"
-                    value="{{real_sum.value - res.sum}}" type="text" #deficit_price>
-            </div>
+      </div>
 
 
-            <div class="form-group justify-content-center align-items-center text-center">
-                <button type="submit"
-                    (click)="add_inventory(product.value, stock.value, date.value, price.value, quantity.value, sum.value, real_sum.value, real_quantity.value, deficit.value, deficit_price.value)"
-                    class="btn btn-primary">
-                    Сохранить
-                </button>
-            </div>
-        </form>
-    </ng-template>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="quantity">Количество</label>
+            <input formControlName="quantity" class="form-control quantity"
+                   [(ngModel)]="res.quantity"
+                   [value]="res.quantity" type="text" #quantity id="quantity">
+          </div>
+        </div>
+        <div class="col">
+
+          <div class="form-group">
+            <label class="control-label" for="real_quantity">Реальное количество</label>
+            <input formControlName="real_quantity" class="form-control real_quantity"
+                   ng-model="myNumber"
+                   type="text" #real_quantity id="real_quantity">
+          </div>
+
+
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="deficit">Недостача (в ед.)</label>
+            <input formControlName="deficit" class="form-control deficit"
+                   value="{{real_quantity.value - res.quantity}}" type="text" #deficit id="deficit">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="sum">Стоимость</label>
+            <input formControlName="sum" class="form-control sum"
+                   value="{{res.price * quantity.value}}" type="text" #sum id="sum">
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="real_sum">Реальная стоимость</label>
+            <input formControlName="real_sum" class="form-control real_sum"
+                   value="{{res.price * real_quantity.value}}" type="text" #real_sum id="real_sum">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="deficit_price">Недостача (в ден.ед.)</label>
+            <input formControlName="deficit_price" class="form-control deficit_price"
+                   value="{{real_sum.value - sum.value}}" type="text" #deficit_price id="deficit_price">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group justify-content-center align-items-center text-center">
+        <button type="button"
+                (click)="add_inventory(product.value, stock.value, date.value, price.value, quantity.value, sum.value, real_sum.value, real_quantity.value, deficit.value, deficit_price.value)"
+                class="btn btn-primary">
+          Сохранить
+        </button>
+      </div>
+    </form>
+  </ng-template>
 
 </div>
