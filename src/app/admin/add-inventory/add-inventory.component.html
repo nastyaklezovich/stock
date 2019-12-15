@@ -9,7 +9,7 @@
           <div class="form-group">
             <label class="control-label" for="product_id">Продукт</label>
             <select formControlName="product_id" class="form-control product_id" id="product_id"
-                    [(ngModel)]="product_id">
+              [(ngModel)]="product_id">
               <option *ngFor="let product of products" [value]="product.id">
                 {{product.name}}
               </option>
@@ -19,8 +19,7 @@
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="stock_id">Склад</label>
-            <select formControlName="stock_id" class="form-control stock_id" id="stock_id"
-                    [(ngModel)]="stock_id">
+            <select formControlName="stock_id" class="form-control stock_id" id="stock_id" [(ngModel)]="stock_id">
               <option *ngFor="let stock of stocks" [value]="stock.id">
                 {{stock.name}}
               </option>
@@ -30,8 +29,7 @@
       </div>
 
       <div class="form-group justify-content-center align-items-center text-center">
-        <button type="button" (click)="search_product(product_id, stock_id)"
-                class="btn btn-primary">
+        <button type="button" (click)="search_product(product_id, stock_id)" class="btn btn-primary">
           Найти
         </button>
       </div>
@@ -51,30 +49,34 @@
             <label class="control-label" for="date">Дата</label>
             <input formControlName="date" class="form-control date" id="date" type="date" #date>
           </div>
+          <div *ngFor="let validation of account_validation_messages.date">
+            <div class="alert alert-danger" *ngIf="InventoryForm.get('date').hasError(validation.type) &&
+                                                 (InventoryForm.get('date').dirty ||
+                                                 InventoryForm.get('date').touched)">
+              {{validation.message}}
+            </div>
+          </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="product_id">Продукт</label>
-            <input formControlName="product_id" class="form-control product_id"
-                   [(ngModel)]="res.product_id"
-                   [value]="res.product_id" type="text" #product_id>
+            <input formControlName="product_id" class="form-control product_id" [(ngModel)]="res.product_id"
+              [value]="res.product_id" type="text" #product_id>
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="stock_id">Склад</label>
-            <input formControlName="stock_id" class="form-control stock_id"
-                   [(ngModel)]="res.stock_id"
-                   [value]="res.stock_id" type="text" #stock_id>
+            <input formControlName="stock_id" class="form-control stock_id" [(ngModel)]="res.stock_id"
+              [value]="res.stock_id" type="text" #stock_id>
           </div>
         </div>
         <div class="col">
 
           <div class="form-group">
             <label class="control-label" for="price">Цена (за ед.)</label>
-            <input formControlName="price" class="form-control price" [(ngModel)]="res.price"
-                   [value]="res.price"
-                   type="text" id="price" #price>
+            <input formControlName="price" class="form-control price" [(ngModel)]="res.price" [value]="res.price"
+              type="text" id="price" #price>
           </div>
         </div>
 
@@ -85,28 +87,32 @@
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="quantity">Количество</label>
-            <input formControlName="quantity" class="form-control quantity"
-                   [(ngModel)]="res.quantity"
-                   [value]="res.quantity" type="text" #quantity id="quantity">
+            <input formControlName="quantity" class="form-control quantity" [(ngModel)]="res.quantity"
+              [value]="res.quantity" type="text" #quantity id="quantity">
           </div>
         </div>
-        <div class="col">
 
+
+        <div class="col">
           <div class="form-group">
             <label class="control-label" for="real_quantity">Реальное количество</label>
-            <input formControlName="real_quantity" class="form-control real_quantity"
-                   ng-model="myNumber"
-                   type="text" #real_quantity id="real_quantity">
+            <input formControlName="real_quantity" class="form-control real_quantity" ng-model="myNumber" type="text"
+              #real_quantity id="real_quantity">
           </div>
-
-
+          <div *ngFor="let validation of account_validation_messages.real_quantity">
+            <div class="alert alert-danger" *ngIf="InventoryForm.get('real_quantity').hasError(validation.type) &&
+                                                 (InventoryForm.get('real_quantity').dirty ||
+                                                 InventoryForm.get('real_quantity').touched)">
+              {{validation.message}}
+            </div>
+          </div>
         </div>
 
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="deficit">Недостача (в ед.)</label>
-            <input formControlName="deficit" class="form-control deficit"
-                   value="{{real_quantity.value - res.quantity}}" type="text" #deficit id="deficit">
+            <input formControlName="deficit" class="form-control deficit" value="{{real_quantity.value - res.quantity}}"
+              type="text" #deficit id="deficit">
           </div>
         </div>
 
@@ -116,31 +122,39 @@
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="sum">Стоимость</label>
-            <input formControlName="sum" class="form-control sum"
-                   value="{{res.price * quantity.value}}" type="text" #sum id="sum">
-
+            <input formControlName="sum" class="form-control sum" value="{{res.price * quantity.value}}" type="text"
+              #sum id="sum">
           </div>
         </div>
+
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="real_sum">Реальная стоимость</label>
-            <input formControlName="real_sum" class="form-control real_sum"
-                   value="{{res.price * real_quantity.value}}" type="text" #real_sum id="real_sum">
+            <input formControlName="real_sum" class="form-control real_sum" value="{{res.price * real_quantity.value}}"
+              type="text" #real_sum id="real_sum">
+          </div>
+          <div *ngFor="let validation of account_validation_messages.real_sum">
+            <div class="alert alert-danger" *ngIf="InventoryForm.get('real_sum').hasError(validation.type) &&
+                                                 (InventoryForm.get('real_sum').dirty ||
+                                                 InventoryForm.get('real_sum').touched)">
+              {{validation.message}}
+            </div>
           </div>
         </div>
+
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="deficit_price">Недостача (в ден.ед.)</label>
             <input formControlName="deficit_price" class="form-control deficit_price"
-                   value="{{real_sum.value - sum.value}}" type="text" #deficit_price id="deficit_price">
+              value="{{real_sum.value - sum.value}}" type="text" #deficit_price id="deficit_price">
           </div>
         </div>
       </div>
 
       <div class="form-group justify-content-center align-items-center text-center">
-        <button type="button"
-                (click)="add_inventory(product_id.value, stock_id.value, date.value, price.value, quantity.value, sum.value, real_sum.value, real_quantity.value, deficit.value, deficit_price.value)"
-                class="btn btn-primary">
+        <button type="button" [disabled]="InventoryForm.status == 'INVALID'"
+          (click)="add_inventory(product_id.value, stock_id.value, date.value, price.value, quantity.value, sum.value, real_sum.value, real_quantity.value, deficit.value, deficit_price.value)"
+          class="btn btn-primary">
           Сохранить
         </button>
       </div>

@@ -17,8 +17,8 @@ export class AddInventoryComponent implements OnInit {
   InventoryForm: FormGroup;
   SearchProductForm: FormGroup;
 
-  res: {} = {};
-  // res = { id: "1", product_id: "1", stock_id: "2", price: 5, quantity: 100, sum: 500 };
+  // res: {} = {};
+  res = { id: "1", product_id: "1", stock_id: "2", price: 5, quantity: 100, sum: 500 };
   inventory: {} = {};
   // products = [{ id: "1", name: "11" }, { id: "2", name: "222" }];
   // stocks = [{ id: "1", name: "11" }, { id: "2", name: "222" }];
@@ -47,10 +47,18 @@ export class AddInventoryComponent implements OnInit {
       date: ['', Validators.required],
       quantity: [{ value: '', disabled: true }, Validators.required],
       sum: [{ value: '', disabled: true }, Validators.required],
-      real_sum: ['0', Validators.required],
+      real_sum: ['0', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
       price: [{ value: '', disabled: true }, Validators.required],
       deficit: [{ value: '', disabled: true }, Validators.required],
-      real_quantity: ['0', Validators.required],
+      real_quantity: ['0', Validators.compose([
+        Validators.maxLength(20),
+        Validators.pattern('^[0-9]+$'),
+        Validators.required
+      ])],
       deficit_price: [{ value: '', disabled: true }, Validators.required],
 
     })
@@ -67,11 +75,11 @@ export class AddInventoryComponent implements OnInit {
     console.log(obj);
     // this.is.search_product(obj);
     this.isSearch = false;
-    this.is.search_product(obj).subscribe(((res: Inventory[]) => {
-      this.inventory = { ...res };
-      this.res = res;
-      console.log(res);
-    }));
+    // this.is.search_product(obj).subscribe(((res: Inventory[]) => {
+    //   this.inventory = { ...res };
+    //   this.res = res;
+    //   console.log(res);
+    // }));
   }
 
   add_inventory(product_id, stock_id, date, quantity, sum, real_sum, real_quantity, deficit, deficit_price) {
@@ -90,6 +98,21 @@ export class AddInventoryComponent implements OnInit {
     console.log(inventory);
   }
 
+  account_validation_messages = {
+    'date': [
+      { type: 'required', message: 'Заполните поле' }
+    ],
+    'real_sum': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ],
+    'real_quantity': [
+      { type: 'required', message: 'Заполните поле' },
+      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
+      { type: 'pattern', message: 'Некорректная стоимость' },
+    ]
+  }
 
 
 }
