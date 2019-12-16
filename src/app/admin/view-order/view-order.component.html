@@ -19,8 +19,8 @@
             <tr *ngFor="let order of orders; let i=index">
                 <td class="text-center">{{i+1}}</td>
                 <td class="text-center">{{ order.date}}</td>
-                <td class="text-center">{{ order.partner_id}}</td>
-                <td class="text-center">{{ order.product_id}}</td>
+                <td class="text-center">{{ order.partner_id.name}}</td>
+                <td class="text-center">{{ order.product_id.name}}</td>
                 <td class="text-center">{{ order.quantity}}</td>
                 <td class="text-center">{{ order.sum}}</td>
                 <td class="text-center">{{ order.paid_sum}}</td>

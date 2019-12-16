@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ViewOrderComponent implements OnInit {
 
-  orders: Order[];
+  orders: any;
   modalRef: BsModalRef;
   OrderForm: FormGroup;
   res: {} = {};
@@ -49,7 +49,7 @@ export class ViewOrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.os.get_orders().subscribe((data: Order[]) => {
+    this.os.get_orders().subscribe((data: any) => {
       this.orders = data;
       console.log('orders');
       console.log(this.orders);
