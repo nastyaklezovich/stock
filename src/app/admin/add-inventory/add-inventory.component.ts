@@ -18,7 +18,7 @@ export class AddInventoryComponent implements OnInit {
   SearchProductForm: FormGroup;
 
   res: {} = {};
-  // res = { id: "1", product_id: "1", stock_id: "2", price: 5, quantity: 100, sum: 500 };
+  // res = { id: "1", product_id: { name: "name", id: "id"}, stock_id: { name: "1", id: "1"}, price: 5, quantity: 100, sum: 500 };
   inventory: {} = {};
   // products = [{ id: "1", name: "11" }, { id: "2", name: "222" }];
   // stocks = [{ id: "1", name: "11" }, { id: "2", name: "222" }];

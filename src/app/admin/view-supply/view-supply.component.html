@@ -52,7 +52,7 @@
             <label class="control-label" for="product_id">Продукт</label>
             <input formControlName="product_id" class="form-control product_id"
                    [(ngModel)]="res.product_id"
-                   [value]="res.product_id" type="text" #product_id id="product_id">
+                   [value]="res.product_id.name" type="text" #product_id id="product_id">
 
           </div>
         </div>
@@ -86,7 +86,7 @@
             <label class="control-label" for="partner_id">Поставщик</label>
             <input formControlName="partner_id" class="form-control partner_id"
                    [(ngModel)]="res.partner_id"
-                   [value]="res.partner_id" type="text" #partner_id id="partner_id">
+                   [value]="res.partner_id.name" type="text" #partner_id id="partner_id">
 
           </div>
 
@@ -130,7 +130,7 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
       <button [disabled]="SupplyForm.status == 'INVALID'" type="button" class="btn btn-primary"
-              (click)="save(product_id, worker_id, stock_id, partner_id, quantity.value, date.value, res.id)">
+              (click)="save(res.product_id.id, worker_id, stock_id, res.partner_id.id, quantity.value, date.value, res.id)">
         Сохранить
       </button>
     </div>

@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label class="control-label" for="partner_id">Заказчик</label>
                             <input class="form-control partner_id" id="partner_id" [(ngModel)]="res.partner_id"
-                                [value]="res.partner_id" type="text">
+                                [value]="res.partner_id.name" type="text">
 
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <label class="control-label" for="product_id">Продукт</label>
                             <input class="form-control product_id" id="product_id" [(ngModel)]="res.product_id"
-                                [value]="res.product_id" type="text">
+                                [value]="res.product_id.name" type="text">
                         </div>
                         <!-- <div *ngIf="OrderForm.controls['product_id'].invalid && (OrderForm.controls['product_id'].dirty || OrderForm.controls['product_id'].touched)"
                             class="alert alert-danger">
@@ -136,7 +136,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
                 <button [disabled]="OrderForm.status == 'INVALID'" type="button" class="btn btn-primary"
-                    (click)="save(product_id.value, partner_id.value, quantity.value, date.value, sum.value, paid_sum.value, res.id)">Сохранить</button>
+                    (click)="save(res.product_id.id, res.partner_id.id, quantity.value, date.value, sum.value, paid_sum.value, res.id)">Сохранить</button>
             </div>
         </div>
 
