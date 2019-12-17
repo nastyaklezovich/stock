@@ -63,12 +63,13 @@ export class ViewOrderComponent implements OnInit {
     })
   }
 
-  save(date, product_id, partner_id, quantity, sum, paid_sum, id) {
+  save(date, partner_id, product_id, quantity, sum, paid_sum, id) {
+
 
     const ord = {
       date: date,
-      product_id: {id: product_id},
       partner_id: {id: partner_id},
+      product_id: {id: product_id},
       quantity: quantity,
       sum: sum,
       paid_sum: paid_sum,
