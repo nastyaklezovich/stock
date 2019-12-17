@@ -18,7 +18,8 @@
     <tr *ngFor="let supply of supplies; let i=index">
       <td class="text-center">{{i+1}}</td>
       <td class="text-center">{{ supply.product_id.name}}</td>
-      <td class="text-center">{{ supply.worker_id.first_name + ' ' + supply.worker_id.last_name}}</td>
+      <td class="text-center">{{ supply.worker_id.first_name + ' ' + supply.worker_id.last_name}}
+      </td>
       <td class="text-center">{{ supply.stock_id.name}}</td>
       <td class="text_center">{{ supply.partner_id.name}}</td>
       <td class="text-center">{{ supply.quantity}}</td>
@@ -50,10 +51,9 @@
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="product_id">Продукт</label>
-            <input formControlName="product_id" class="form-control product_id"
-                   [ngModel]="sup.product_id.name"
-                   [value]="sup.product_id.name" type="text" #product_id id="product_id">
-
+            <input formControlName="product_id" class="form-control product_id" id="product_id"
+                   [ngModel]="res.product_id.name"
+                   [value]="res.product_id.name"  type="text" #product_id>
           </div>
         </div>
 
@@ -84,9 +84,9 @@
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="partner_id">Поставщик</label>
-            <input formControlName="partner_id" class="form-control partner_id"
-                   [ngModel]="sup.partner_id.name"
-                   [value]="sup.partner_id.name" type="text" #partner_id id="partner_id">
+            <input formControlName="partner_id" class="form-control partner_id" id="partner_id"
+                   [ngModel]="res.partner_id.name"
+                   [value]="res.partner_id.name" type="text" #partner_id >
 
           </div>
 
@@ -96,8 +96,8 @@
           <div class="form-group">
             <label class="control-label" for="quantity">Количество</label>
             <input formControlName="quantity" class="form-control quantity"
-                   [(ngModel)]="sup.quantity"
-                   [value]="sup.quantity" type="text" #quantity id="quantity">
+                   [(ngModel)]="res.quantity"
+                   [value]="res.quantity" type="text" #quantity id="quantity">
           </div>
           <div *ngFor="let validation of account_validation_messages.quantity">
             <div class="alert alert-danger" *ngIf="SupplyForm.get('quantity').hasError(validation.type) &&
@@ -111,8 +111,8 @@
         <div class="col">
           <div class="form-group">
             <label class="control-label" for="date">Дата</label>
-            <input formControlName="date" class="form-control date" [(ngModel)]="sup.date"
-                   [value]="sup.date" type="date" #date id="date">
+            <input formControlName="date" class="form-control date" [(ngModel)]="res.date"
+                   [value]="res.date" type="date" #date id="date">
           </div>
           <div *ngFor="let validation of account_validation_messages.date">
             <div class="alert alert-danger" *ngIf="SupplyForm.get('date').hasError(validation.type) &&
@@ -130,7 +130,7 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
       <button [disabled]="SupplyForm.status == 'INVALID'" type="button" class="btn btn-primary"
-              (click)="save(sup.product_id.id, worker_id, stock_id, sup.partner_id.id, quantity.value, date.value, sup.id)">
+              (click)="save(res.product_id.id, worker_id, stock_id, res.partner_id.id, quantity.value, date.value, res.id)">
         Сохранить
       </button>
     </div>

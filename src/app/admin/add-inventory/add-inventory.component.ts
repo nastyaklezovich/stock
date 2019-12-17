@@ -68,8 +68,8 @@ export class AddInventoryComponent implements OnInit {
 
   search_product(product_id, stock_id) {
     const obj = {
-      product_id: product_id,
-      stock_id: stock_id,
+      product_id: {id: product_id},
+      stock_id: {id: stock_id},
     }
     // console.log(this.SearchProductForm);
     console.log(obj);
@@ -85,8 +85,8 @@ export class AddInventoryComponent implements OnInit {
 
   add_inventory(product_id, stock_id, date, quantity, sum, real_sum, real_quantity, deficit, deficit_price) {
     const inventory = {
-      product_id: product_id,
-      stock_id: stock_id,
+      product_id: {id: product_id},
+      stock_id: {id: stock_id},
       date: date,
       quantity: quantity,
       sum: sum,
@@ -95,9 +95,8 @@ export class AddInventoryComponent implements OnInit {
       deficit: deficit,
       deficit_price: deficit_price
     }
-    alert('Инвентаризация проведена успешно!')
     console.log(inventory);
-    this.is.add_inventory(this.inventory);
+    this.is.add_inventory(inventory);
   }
 
   account_validation_messages = {
