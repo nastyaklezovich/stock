@@ -41,7 +41,6 @@
             <div class="modal-body">
                 <form [formGroup]="StockForm" type="form" class="form-group" novalidate>
 
-                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label class="control-label" for="name">Название</label>
@@ -70,9 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label class="control-label" for="type">Тип</label>
@@ -104,14 +101,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </form>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Отменить</button>
                 <button  [disabled]="StockForm.status == 'INVALID'" type="button" class="btn btn-primary"
-                    (click)="save(name,value, type, address.value, capacity.value, res.id)">Сохранить</button>
+                    (click)="save(name.value, capacity.value, type, address.value, res.id)">Сохранить</button>
             </div>
         </div>
 

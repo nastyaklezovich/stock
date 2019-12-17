@@ -28,7 +28,6 @@ export class ViewStockComponent implements OnInit {
     this.StockForm = this.fb.group({
       name: ['', Validators.compose([
         Validators.maxLength(25),
-        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
         Validators.required
       ])],
       type: [''],

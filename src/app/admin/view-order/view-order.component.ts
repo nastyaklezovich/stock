@@ -16,8 +16,8 @@ export class ViewOrderComponent implements OnInit {
   orders: any;
   modalRef: BsModalRef;
   OrderForm: FormGroup;
-  res: {} = {};
-  order: {} = {};
+  res: any;
+  order: any;
 
   constructor(private os: OrderService, private route: ActivatedRoute, private fb: FormBuilder, private modalService: BsModalService) {
     this.createForm();
@@ -83,7 +83,7 @@ export class ViewOrderComponent implements OnInit {
   open_modal(template: TemplateRef<any>, id) {
     this.modalRef = this.modalService.show(template);
     console.log(id);
-    this.os.edit_order(id).subscribe(((res: Order[]) => {
+    this.os.edit_order(id).subscribe(((res: any) => {
       this.order = { ...res };
       this.res = res;
       console.log(res);

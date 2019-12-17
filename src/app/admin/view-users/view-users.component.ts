@@ -47,7 +47,6 @@ export class ViewUsersComponent implements OnInit {
       ])],
       position: ['', Validators.compose([
         Validators.maxLength(25),
-        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
       ])],
     })
   }
