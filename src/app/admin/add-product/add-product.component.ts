@@ -17,7 +17,6 @@ export class AddProductComponent implements OnInit {
     this.ProductForm = this.fb.group({
       name: ['', Validators.compose([
         Validators.maxLength(25),
-        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
         Validators.required
       ])],
       price: ['', Validators.compose([

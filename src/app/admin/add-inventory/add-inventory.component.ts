@@ -79,7 +79,8 @@ export class AddInventoryComponent implements OnInit {
       this.inventory = { ...res };
       this.res = res;
       console.log(res);
-    }));
+    }),
+    error=>{alert('Нет соответствующего требованиям товара!')});
   }
 
   add_inventory(product_id, stock_id, date, quantity, sum, real_sum, real_quantity, deficit, deficit_price) {
@@ -94,8 +95,9 @@ export class AddInventoryComponent implements OnInit {
       deficit: deficit,
       deficit_price: deficit_price
     }
-    alert()
+    alert('Инвентаризация проведена успешно!')
     console.log(inventory);
+    this.is.add_inventory(this.inventory);
   }
 
   account_validation_messages = {

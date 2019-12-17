@@ -24,7 +24,8 @@ export class OrderService {
     delete_order(id) {
         return this
             .http
-            .delete(`${this.uri}/order/${id}`);
+            .delete(`${this.uri}
+            /${id}`);
     }
 
     get_orders() {

@@ -18,7 +18,6 @@ export class AddStockComponent implements OnInit {
     this.StockForm = this.fb.group({
       name: ['', Validators.compose([
         Validators.maxLength(25),
-        Validators.pattern('^[A-Za-zА-Яа-яЁё]+$'),
         Validators.required
       ])],
       type: [''],
@@ -31,12 +30,12 @@ export class AddStockComponent implements OnInit {
     })
   }
 
-  add_stock(name, type, address, capacity) {
+  add_stock(name, capacity, type, address) {
     const stock = {
       name: name,
+      capacity: capacity,
       type: type,
       address: address,
-      capacity: capacity,
     };
     console.log(stock);
     this.ss.add_stock(stock);

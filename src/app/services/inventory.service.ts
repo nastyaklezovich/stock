@@ -11,7 +11,7 @@ export class InventoryService {
 
     add_inventory(obj) {
         this.http.post(`${this.uri}/inventory`, obj)
-            .subscribe(res => { console.log('Done'); alert('Инвентаризация был добавлен!') })
+            .subscribe(res => { console.log('Done'); alert('Инвентаризация был добавлена!') })
     }
 
     search_product(obj){
