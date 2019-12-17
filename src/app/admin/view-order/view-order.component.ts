@@ -1,9 +1,8 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { OrderService } from '../../services/order.service';
-import Order from '../../models/Order'
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {OrderService} from '../../services/order.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -26,8 +25,8 @@ export class ViewOrderComponent implements OnInit {
   createForm() {
     this.OrderForm = this.fb.group({
       date: ['', Validators.required],
-      product_id: [{ value: '', disabled: true }],
-      partner_id: [{ value: '', disabled: true }],
+      product_id: [{value: '', disabled: true}],
+      partner_id: [{value: '', disabled: true}],
       quantity: ['', Validators.compose([
         Validators.maxLength(20),
         Validators.pattern('^[0-9]+$'),
@@ -58,6 +57,7 @@ export class ViewOrderComponent implements OnInit {
 
   delete_order(id) {
     this.os.delete_order(id).subscribe(res => {
+      alert('Заказ удален!')
       console.log(id);
       console.log('Order deleted')
     })
@@ -65,17 +65,17 @@ export class ViewOrderComponent implements OnInit {
 
   save(date, product_id, partner_id, quantity, sum, paid_sum, id) {
 
-    const order = {
+    const ord = {
       date: date,
-      product_id: product_id,
-      partner_id: partner_id,
+      product_id: {id: product_id},
+      partner_id: {id: partner_id},
       quantity: quantity,
       sum: sum,
       paid_sum: paid_sum,
     }
 
     this.route.params.subscribe(params => {
-      this.os.update_order(order, id);
+      this.os.update_order(ord, id);
       this.modalRef.hide();
     });
   }
@@ -84,7 +84,7 @@ export class ViewOrderComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
     console.log(id);
     this.os.edit_order(id).subscribe(((res: any) => {
-      this.order = { ...res };
+      this.order = {...res};
       this.res = res;
       console.log(res);
     }));
@@ -92,22 +92,22 @@ export class ViewOrderComponent implements OnInit {
 
   account_validation_messages = {
     'quantity': [
-      { type: 'required', message: 'Заполните поле' },
-      { type: 'maxlength', message: 'Количество не может содержать больше 20 символов' },
-      { type: 'pattern', message: 'Некорректное количество' },
+      {type: 'required', message: 'Заполните поле'},
+      {type: 'maxlength', message: 'Количество не может содержать больше 20 символов'},
+      {type: 'pattern', message: 'Некорректное количество'},
     ],
     'date': [
-      { type: 'required', message: 'Заполните поле' }
+      {type: 'required', message: 'Заполните поле'}
     ],
     'sum': [
-      { type: 'required', message: 'Заполните поле' },
-      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
-      { type: 'pattern', message: 'Некорректная стоимость' },
+      {type: 'required', message: 'Заполните поле'},
+      {type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов'},
+      {type: 'pattern', message: 'Некорректная стоимость'},
     ],
     'paid_sum': [
-      { type: 'required', message: 'Заполните поле' },
-      { type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов' },
-      { type: 'pattern', message: 'Некорректная стоимость' },
+      {type: 'required', message: 'Заполните поле'},
+      {type: 'maxlength', message: 'Стоимость не может содержать больше 20 символов'},
+      {type: 'pattern', message: 'Некорректная стоимость'},
     ]
   }
 

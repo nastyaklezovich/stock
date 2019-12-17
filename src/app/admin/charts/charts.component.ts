@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import {Component, OnInit} from '@angular/core';
 // import Order from '../../models/Order';
 // import {OrderService} from '../../services/order.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Supply from '../../models/Supply';
-import { SupplyService } from '../../services/supply.service'
+import {SupplyService} from '../../services/supply.service'
 import * as XLSX from 'xlsx';
+import {ChartDataSets} from "chart.js";
+import {Color, Label} from "ng2-charts";
 
 @Component({
   selector: 'app-charts',
@@ -17,31 +17,12 @@ import * as XLSX from 'xlsx';
 export class ChartsComponent implements OnInit {
 
   ChartForm: FormGroup;
-
-  lineChartData: ChartDataSets[] = [
-    { data: [85, 72, 78, 75, 77, 75], label: 'Изменение кол-ва поставок' },
-  ];
-
-  lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June'];
-
-  lineChartOptions = {
-    responsive: true,
-  };
-
-  lineChartColors: Color[] = [
-    {
-      borderColor: 'rgb(79, 79, 79)',
-      backgroundColor: 'rgb(255, 169, 64)',
-    },
-  ];
-
-  lineChartLegend = true;
-  lineChartPlugins = [];
-  lineChartType = 'line';
-
   supplies: Supply;
+  data = [];
+  arr = [];
 
-  constructor(private fb: FormBuilder, private ss: SupplyService) { }
+  constructor(private fb: FormBuilder, private ss: SupplyService) {
+  }
 
   ngOnInit() {
     this.ChartForm = this.fb.group({
@@ -61,17 +42,51 @@ export class ChartsComponent implements OnInit {
     }
     console.log(obj);
     this.ss.get_data(obj).subscribe(
-      (res: Supply) => {
-        this.supplies = res;
-        console.log(this.supplies);
-        this.isOk = true;
-      },
-      error => {
-        this.error = error.message;
-        console.log(error);
-        alert('В этот промежуток времени поставки не осуществлялись!')
-      })
+        (res: Supply) => {
+          this.supplies = res;
+          console.log(this.supplies);
+          this.isOk = true;
+          // const array = [];
+          // const date_array = [];
+          // this.supplies.forEach(function (item, i, supplies) {
+          //   array.push(item.quantity);
+          // });
+          // console.log(array);
+          // this.data = array;
+          // console.log(this.data)
+          // this.supplies.forEach(function (item, i, supplies) {
+          //   date_array.push(item.date);
+          // });
+          // this.arr = date_array;
+          // console.log(this.arr)
+        },
+        error => {
+          this.error = error.message;
+          console.log(error);
+          alert('В этот промежуток времени поставки не осуществлялись!')
+        })
   }
+
+  // lineChartData: ChartDataSets[] = [
+  //   {data: this.data, label: 'Изменение кол-ва поставок'},
+  // ];
+
+  // lineChartLabels: Label[] = this.arr;
+  //
+  // lineChartOptions = {
+  //   responsive: true,
+  // };
+  //
+  // lineChartColors: Color[] = [
+  //   {
+  //     borderColor: 'rgb(79, 79, 79)',
+  //     backgroundColor: 'rgb(255, 169, 64)',
+  //   },
+  // ];
+  //
+  // lineChartLegend = true;
+  // lineChartPlugins = [];
+  // lineChartType = 'line';
 
   exportexcel(): void {
     /* table id is passed over here */
@@ -88,10 +103,10 @@ export class ChartsComponent implements OnInit {
 
   account_validation_messages = {
     'end_date': [
-      { type: 'required', message: 'Заполните поле' },
+      {type: 'required', message: 'Заполните поле'},
     ],
     'start_date': [
-      { type: 'required', message: 'Заполните поле' }
+      {type: 'required', message: 'Заполните поле'}
     ],
   }
 

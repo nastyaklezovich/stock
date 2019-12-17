@@ -23,8 +23,7 @@ export class ViewSupplyComponent implements OnInit {
   users: any;
   modalRef: BsModalRef;
   SupplyForm: FormGroup;
-  res: {} = {};
-  sup: any;
+  res: any;
   supply: any;
  // sup = {"date":"2019-12-20","quantity":"32","id":"a377473b-7afb-4fe0-8414-3071a98e885b","worker_id":{"email":"fghjke@mail.ru","password":"12345678","role":"USER","position":"Кладовщик","id":"8776cd90-9c3e-4b07-b844-e0096d7be299","first_name":"Татьяна","last_name":"Черняк","phone_number":"37529-101-37-88"},"product_id":{"name":"Стол","price":"200","id":"a24bfefa-dce7-4fbc-96f4-b05e03c3734d"},"stock_id":{"name":"Склад \"Краб\"","type":"закрытый","address":"г. Минск, ул. Якуба Коласа, д. 10","capacity":"200000","id":"f182ba9d-32fd-49d5-ba73-628181461b5f"},"partner_id":{"name":"Еврологистик","role":"поставщик","address":"г. Рига","id":"fb623a75-587f-4dab-8e39-f2579cbb30f8"}}  sup = { id: "1", product_id: { name: "name", id: "id"}, partner_id: {name: "partner", id:"id"}, quantity: "1000", date: "24.12.1998", id: "id_sup" };
 
@@ -86,18 +85,17 @@ export class ViewSupplyComponent implements OnInit {
   }
 
   save(product_id, worker_id, stock_id, partner_id, quantity, date, id) {
-    const supply = {
-      product_id: product_id,
-      worker_id: worker_id,
-      stock_id: stock_id,
-      partner_id: partner_id,
+    const suppl = {
+      product_id: {id: product_id},
+      worker_id: {id: worker_id},
+      stock_id: {id: stock_id},
+      partner_id: {id: partner_id},
       quantity: quantity,
       date: date,
     }
-    console.log(supply);
-
+    console.log(suppl);
     this.route.params.subscribe(params => {
-      this.ss.update_supply(this.supply, id);
+      this.ss.update_supply(suppl, id);
       this.modalRef.hide();
     });
   }
@@ -105,10 +103,10 @@ export class ViewSupplyComponent implements OnInit {
   open_modal(template: TemplateRef<any>, id) {
     this.modalRef = this.modalService.show(template);
     console.log(id);
-    this.ss.edit_supply(id).subscribe(((sup: any) => {
-      this.supply = {...sup};
-      this.sup = sup;
-      console.log(sup);
+    this.ss.edit_supply(id).subscribe(((res: any) => {
+      this.supply = {...res};
+      this.res = res;
+      console.log(res);
     }));
   }
 

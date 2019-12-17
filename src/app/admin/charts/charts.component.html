@@ -1,87 +1,90 @@
 <div class="container">
-    <ng-container *ngIf="isOk; then Table; else Form"></ng-container>
-    <ng-template #Form>
+  <ng-container *ngIf="isOk; then Table; else Form"></ng-container>
+  <ng-template #Form>
 
-        <form [formGroup]="ChartForm" type="form" class="form-group" novalidate>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label class="control-label" for="start_date">Дата начала:</label>
-                        <input formControlName="start_date" class="form-control start_date" type="date"
-                            name="start_date" id="start_date" #start_date>
-                    </div>
-                    <div *ngFor="let validation of account_validation_messages.start_date">
-                        <div class="alert alert-danger" *ngIf="ChartForm.get('start_date').hasError(validation.type) &&
+    <form [formGroup]="ChartForm" type="form" class="form-group" novalidate>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="start_date">Дата начала:</label>
+            <input formControlName="start_date" class="form-control start_date" type="date"
+                   name="start_date" id="start_date" #start_date>
+          </div>
+          <div *ngFor="let validation of account_validation_messages.start_date">
+            <div class="alert alert-danger" *ngIf="ChartForm.get('start_date').hasError(validation.type) &&
                                                        (ChartForm.get('start_date').dirty ||
                                                        ChartForm.get('start_date').touched)">
-                            {{validation.message}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label class="control-label" for="end_date">Дата конца:</label>
-                        <input formControlName="end_date" class="form-control end_date" type="date" name="end_date"
-                            id="end_date" #end_date>
-                    </div>
-                    <div *ngFor="let validation of account_validation_messages.end_date">
-                        <div class="alert alert-danger" *ngIf="ChartForm.get('end_date').hasError(validation.type) &&
+              {{validation.message}}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="control-label" for="end_date">Дата конца:</label>
+            <input formControlName="end_date" class="form-control end_date" type="date"
+                   name="end_date"
+                   id="end_date" #end_date>
+          </div>
+          <div *ngFor="let validation of account_validation_messages.end_date">
+            <div class="alert alert-danger" *ngIf="ChartForm.get('end_date').hasError(validation.type) &&
                                                        (ChartForm.get('end_date').dirty ||
                                                        ChartForm.get('end_date').touched)">
-                            {{validation.message}}
-                        </div>
-                    </div>
-                </div>
+              {{validation.message}}
             </div>
-        </form>
-        <div class="form-group justify-content-center align-items-center text-center">
-            <button [disabled]="ChartForm.status == 'INVALID'" (click)="get_data(start_date.value, end_date.value)" class="btn btn-primary">
-                Отчет
-            </button>
+          </div>
         </div>
-    </ng-template>
+      </div>
+    </form>
+    <div class="form-group justify-content-center align-items-center text-center">
+      <button [disabled]="ChartForm.status == 'INVALID'"
+              (click)="get_data(start_date.value, end_date.value)" class="btn btn-primary">
+        Отчет
+      </button>
+    </div>
+  </ng-template>
 
-    <!-- <div class="chart-wrapper">
-        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-            [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
-            [plugins]="lineChartPlugins">
-        </canvas>
-    </div> -->
+  <ng-template #Table>
 
-    <ng-template #Table>
+    <div style="text-align: right;">
+      <a class="btn btn-default btn-lg" style="cursor: pointer;" (click)="exportexcel()">
+        Сохранить файл
+        <img src="https://image.flaticon.com/icons/svg/282/282097.svg" alt="Dowload"
+             style="width: 25px; height: 25px;">
+      </a>
+    </div>
+    <table class="table table-hover " id="excel-table">
+      <thead class="thead-light">
+      <tr>
+        <th class="text-center">№</th>
+        <th class="text-center">Товар</th>
+        <th class="text-center">Сотрудник</th>
+        <th class="text-center">Склад</th>
+        <th class="text-center">Количество</th>
+        <th class="text-center">Дата</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let supply of supplies; let i=index">
+        <td class="text-center">{{i+1}}</td>
+        <td class="text-center">{{ supply.product_id.name}}</td>
+        <td class="text-center">{{ supply.worker_id.first_name+ " " +supply.worker_id.last_name}}
+        </td>
+        <td class="text-center">{{ supply.stock_id.name}}</td>
+        <td class="text-center">{{ supply.quantity}}</td>
+        <td class="text-center">{{ supply.date}}</td>
+      </tr>
+      </tbody>
+    </table>
 
-        <div style="text-align: right;">
-            <a class="btn btn-default btn-lg" style="cursor: pointer;" (click)="exportexcel()">
-                Сохранить файл
-                <img src="https://image.flaticon.com/icons/svg/282/282097.svg" alt="Dowload"
-                    style="width: 25px; height: 25px;">
-            </a>
-        </div>
-        <table class="table table-hover " id="excel-table">
-            <thead class="thead-light">
-                <tr>
-                    <th class="text-center">№</th>
-                    <th class="text-center">Товар</th>
-                    <th class="text-center">Сотрудник</th>
-                    <th class="text-center">Склад</th>
-                    <th class="text-center">Количество</th>
-                    <th class="text-center">Дата</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let supply of supplies; let i=index">
-                    <td class="text-center">{{i+1}}</td>
-                    <td class="text-center">{{ supply.product_id}}</td>
-                    <td class="text-center">{{ supply.worker_id}}</td>
-                    <td class="text-center">{{ supply.stock_id}}</td>
-                    <td class="text-center">{{ supply.quantity}}</td>
-                    <td class="text-center">{{ supply.date}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <!--<div class="chart-wrapper">-->
+      <!--<canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"-->
+              <!--[options]="lineChartOptions"-->
+              <!--[colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"-->
+              <!--[plugins]="lineChartPlugins">-->
+      <!--</canvas>-->
+    <!--</div>-->
 
-
-    </ng-template>
+  </ng-template>
 
 
 </div>

@@ -31,6 +31,7 @@ export class OrderService {
     get_orders() {
         return this
             .http
+
             .get(`${this.uri}/order`);
     }
 
