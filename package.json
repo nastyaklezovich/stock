@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.14",
     "bootstrap": "^4.4.1",
     "bootstrap-select": "^1.13.12",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "d3": "^5.14.2",
     "file-saver": "^2.0.2",
     "ng2-charts": "^2.3.0",
